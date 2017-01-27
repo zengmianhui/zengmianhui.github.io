@@ -253,132 +253,6 @@
             
               
                 
-                <a class="post-title-link" href="/2017/01/27/android-studio配置git/" itemprop="url">
-                  未命名
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-27T16:40:08+08:00" content="2017-01-27">
-              2017-01-27
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/01/27/android-studio配置git/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/27/android-studio配置git/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<p>title: android-studio配置git<br>date: 2017-01-27 16:40:08<br>categories:</p>
-<ul>
-<li>android</li>
-<li>android-studio<br>tags:</li>
-<li>android</li>
-<li>git</li>
-<li><h2 id="android-studio"><a href="#android-studio" class="headerlink" title="android-studio"></a>android-studio</h2></li>
-</ul>
-<p>摘要：<br>    如今开发时代处于团队合作的时代，团队合作的工具是必不可少的，像git就是团队合作比较好的工具，这篇告诉大家如何在android studio中配置git版本控制工具，方便开发。</p>
-<p>正文：</p>
-<p>部分教程来自<a href="http://blog.csdn.net/gao_chun/article/details/49817229/" target="_blank" rel="external">全面介绍Android Studio中Git 的使用（一）</a></p>
-<p>当前文章目录：</p>
-<p>[TOC]</p>
-<p>##首先当然是先创建一个本地仓库<br>首先在一个目录准备作为仓库的目录下，右键“git bash here”</p>
-<p> <img src="http://img.blog.csdn.net/20170123012152124?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br> <img src="http://img.blog.csdn.net/20170123012239765?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>这样本地仓库创建完成了</p>
-<p>##配置远程仓库（提交的时候要注意，仓库至少要有一个文件，git不允许仓库为空）<br>首先要知道“commit”是提交到本地仓库，“push”是提交到远程仓库，所以光有本地仓库是不能团队合作的，我要将本地仓库和远程仓库进行关联<br>关联远程仓库，一个重要的条件就是本地git的“SSH”要和远程仓库的“SSH”相匹配。<br>我首先要配置创建一个SSH在本地（在C盘本地用户目录里面）</p>
-<p>###1、先配置git用户（不作截图）<br>$ git config –global user.name “xuhaiyan”<br>$ git config –global user.email “haiyan.xu.vip@gmail.com”</p>
-<p>###2、创建SSH，创建目录在C盘当前用户下</p>
-<p>ssh-keygen -t rsa -C “zengmianhui”<br>双引号内为电脑登录时的用户名<br> <img src="http://img.blog.csdn.net/20170123012354325?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br> <img src="http://img.blog.csdn.net/20170123014626433?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br><img src="http://img.blog.csdn.net/20170123012425579?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>###3、    查看SSH代码，并将其设置到远程仓库（这里示例github）<br> <img src="http://img.blog.csdn.net/20170123012436748?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br> <img src="http://img.blog.csdn.net/20170123012528858?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>###4、    将本地仓库关联到远程仓库<br>git remote add origin [url]<br> <img src="http://img.blog.csdn.net/20170123012548454?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-<p>##在Settings中选择Version Control 并配置Git，不多说，上个图<br> <img src="http://img.blog.csdn.net/20170123012559015?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>配置完后我们点下路径后的Test按钮，若出现该Success提示框则表明配置成功：<br> <img src="http://img.blog.csdn.net/20170123012634579?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>配置好后我们点击Version Control的时候，在右侧会提示该项目所采用的版本控制工具<br> <img src="http://img.blog.csdn.net/20170123012659220?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>若发现该路径为灰色，需要选中，点击”+”<br> <img src="http://img.blog.csdn.net/20170123012731236?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>因为我们是在一个已有的项目上创建的仓库，所以配置完后需要为项目指定版本控制工具，也可以在最开始Create项目的时候直接指定仓库路径。</p>
-<p>##提交代码<br>起初，我们项目所有文件颜色，都是 [白色：正常文件的颜色]<br> <img src="http://img.blog.csdn.net/20170123012757502?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>但是当我们为项目指定仓库路径后，所有文件颜色的颜色变了 [红色：指定仓库路径后，未Add的文件]<br> <img src="http://img.blog.csdn.net/20170123012811659?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>切换为Project视图，对项目右键，Add文件。（在创建仓库的时候.gitignore文件已默认生成，可以修改添加需要ignore的文件）<br> <img src="http://img.blog.csdn.net/20170123012834488?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>Add成功后，我们在看看文件的颜色为 [绿色：已Add，但未commit的文件]<br> <img src="http://img.blog.csdn.net/20170123012855174?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>也可查看Log日志<br> <img src="http://img.blog.csdn.net/20170123012920552?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>Commit文件可通过 项目右键–&gt; Git –&gt; Commit Directory…  也可点击 工具栏上的两个按钮。<br> <img src="http://img.blog.csdn.net/20170123012947721?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>填写提交信息，然后可先Commit 然后再 Push 或者直接选择 Commit And Push …<br> <img src="http://img.blog.csdn.net/20170123013016053?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>当我们对某个类进行修改后，会发现文件颜色又变了 [墨蓝色：提交成功后修改过的文件]，到此就将项目上传至仓库了，可以通过Studio中的Version Control一目了然的查看提交Log。</p>
-<p> <img src="http://img.blog.csdn.net/20170123013030897?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>关于如何下拉代码，我们可以点击工具栏上的“CVS↓”<img src="http://img.blog.csdn.net/20170123013206754?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"> 按钮，然后在在弹出框中选择 Merge 合并。</p>
-<p><img src="http://img.blog.csdn.net/20170123013226629?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2017/01/27/如何在github上创建个人博客？/" itemprop="url">
                   如何在github上创建个人博客？
                 </a>
@@ -656,7 +530,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
