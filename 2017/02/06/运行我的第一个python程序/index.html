@@ -1,0 +1,648 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="python," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="运行我的第一个python程序python简介（python是一门跨平台的编程语言）创始人Guido van Rossum创始人是Guido van Rossum荷兰人，google工程师，1989年圣诞节，龟叔为了打发无聊的圣诞节所开发的python语言。
+python适合的领域1、web网站和各种网络服务。2、系统工具和脚本。3、作为“胶水”语言把其他语言开发模块包装起来方便使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="运行我的第一个python程序">
+<meta property="og:url" content="https://zengmianhui.github.io/2017/02/06/运行我的第一个python程序/index.html">
+<meta property="og:site_name" content="zengmianhui's personal blog">
+<meta property="og:description" content="运行我的第一个python程序python简介（python是一门跨平台的编程语言）创始人Guido van Rossum创始人是Guido van Rossum荷兰人，google工程师，1989年圣诞节，龟叔为了打发无聊的圣诞节所开发的python语言。
+python适合的领域1、web网站和各种网络服务。2、系统工具和脚本。3、作为“胶水”语言把其他语言开发模块包装起来方便使用">
+<meta property="og:image" content="http://img.blog.csdn.net/20170206002619216?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170206002638669?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170206002649841?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170206002707080?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170206002720826?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170206002727534?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-02-05T16:32:54.054Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="运行我的第一个python程序">
+<meta name="twitter:description" content="运行我的第一个python程序python简介（python是一门跨平台的编程语言）创始人Guido van Rossum创始人是Guido van Rossum荷兰人，google工程师，1989年圣诞节，龟叔为了打发无聊的圣诞节所开发的python语言。
+python适合的领域1、web网站和各种网络服务。2、系统工具和脚本。3、作为“胶水”语言把其他语言开发模块包装起来方便使用">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170206002619216?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 运行我的第一个python程序 | zengmianhui's personal blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">zengmianhui's personal blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                运行我的第一个python程序
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-06T00:31:20+08:00" content="2017-02-06">
+              2017-02-06
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/06/运行我的第一个python程序/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/06/运行我的第一个python程序/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="运行我的第一个python程序"><a href="#运行我的第一个python程序" class="headerlink" title="运行我的第一个python程序"></a>运行我的第一个python程序</h1><h2 id="python简介（python是一门跨平台的编程语言）"><a href="#python简介（python是一门跨平台的编程语言）" class="headerlink" title="python简介（python是一门跨平台的编程语言）"></a>python简介（python是一门跨平台的编程语言）</h2><p>创始人Guido van Rossum<br>创始人是Guido van Rossum荷兰人，google工程师，1989年圣诞节，龟叔为了打发无聊的圣诞节所开发的python语言。</p>
+<h3 id="python适合的领域"><a href="#python适合的领域" class="headerlink" title="python适合的领域"></a>python适合的领域</h3><p>1、web网站和各种网络服务。<br>2、系统工具和脚本。<br>3、作为“胶水”语言把其他语言开发模块包装起来方便使用<br><a id="more"></a></p>
+<h3 id="python不适合的领域"><a href="#python不适合的领域" class="headerlink" title="python不适合的领域"></a>python不适合的领域</h3><p>1、    贴近硬件的代码（首选C）【由于python是一门高级语言，所以不适合贴近硬件开发】<br>2、    移动开发（IOS/Android有各自的开发语言（objC,Swift/java））<br>3、    游戏开发（C/C++）【由于游戏开发需要有高速度的渲染，python运行速度缓慢，所以不适合游戏开发】</p>
+<h3 id="python的实际应用"><a href="#python的实际应用" class="headerlink" title="python的实际应用"></a>python的实际应用</h3><p>国外：Youtube<br>国内：豆瓣、搜狐邮箱<br>开源云计算平台</p>
+<h3 id="python与其他语言的对比"><a href="#python与其他语言的对比" class="headerlink" title="python与其他语言的对比"></a>python与其他语言的对比</h3><p> <img src="http://img.blog.csdn.net/20170206002619216?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>python的优点是代码量少，代码简单，但是缺点是运行速度缓慢，针对网络和硬盘都很缓慢。<br>python的代码无法加密，虽然无法加密，但是由于现代是属于互联网时代，只要源代码不被查看到，就不会泄漏，就像豆瓣是不会被看到它实际的程序程序代码。</p>
+<h2 id="python的安装与运行"><a href="#python的安装与运行" class="headerlink" title="python的安装与运行"></a>python的安装与运行</h2><h3 id="python的版本"><a href="#python的版本" class="headerlink" title="python的版本"></a>python的版本</h3><p>python有两个版本，为什么要介绍版本呢，因为，python两个版本的程序两者无法兼容。<br>python2.7版本的程序无法在3.3版本上运行，同样3.3的程序也无法在2.7的平台上运行</p>
+<h3 id="python的安装"><a href="#python的安装" class="headerlink" title="python的安装"></a>python的安装</h3><p>1、从官网下载安装包<br> <img src="http://img.blog.csdn.net/20170206002638669?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>2、安装非常简单，直接打开安装包安装就可以了，所以不附图<br>3、增加环境变量<br>增加一个环境变量，就可以直接使用CMD编写python程序了<br> <img src="http://img.blog.csdn.net/20170206002649841?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>直接使用命令提示符<br><img src="http://img.blog.csdn.net/20170206002707080?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+<h3 id="第一个python程序（Hello-World-）"><a href="#第一个python程序（Hello-World-）" class="headerlink" title="第一个python程序（Hello World!）"></a>第一个python程序（Hello World!）</h3><p>直接使用cmd编写程序有一个缺点，就是下次还得再输入一次程序，才可以。<br>所以我们将python程序用“.py”的后缀名文件保存下来<br> <img src="http://img.blog.csdn.net/20170206002720826?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>使用cmd进入py文件的目录下，使用代码“python demo.py”运行python程序<br><img src="http://img.blog.csdn.net/20170206002727534?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag">#python</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/05/运行我的第一个php程序/" rel="next" title="运行我的第一个php程序">
+                <i class="fa fa-chevron-left"></i> 运行我的第一个php程序
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/06/运行我的第一个python程序/"
+           data-title="运行我的第一个python程序" data-url="https://zengmianhui.github.io/2017/02/06/运行我的第一个python程序/">
+      </div>
+    
+  </div>
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/zengmianhui.github.io/images/avatar.jpg"
+               alt="zengmianhui" />
+          <p class="site-author-name" itemprop="name">zengmianhui</p>
+          <p class="site-description motion-element" itemprop="description">来这里，查看更多技术的分享</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#运行我的第一个python程序"><span class="nav-number">1.</span> <span class="nav-text">运行我的第一个python程序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#python简介（python是一门跨平台的编程语言）"><span class="nav-number">1.1.</span> <span class="nav-text">python简介（python是一门跨平台的编程语言）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#python适合的领域"><span class="nav-number">1.1.1.</span> <span class="nav-text">python适合的领域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python不适合的领域"><span class="nav-number">1.1.2.</span> <span class="nav-text">python不适合的领域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python的实际应用"><span class="nav-number">1.1.3.</span> <span class="nav-text">python的实际应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python与其他语言的对比"><span class="nav-number">1.1.4.</span> <span class="nav-text">python与其他语言的对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python的安装与运行"><span class="nav-number">1.2.</span> <span class="nav-text">python的安装与运行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#python的版本"><span class="nav-number">1.2.1.</span> <span class="nav-text">python的版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#python的安装"><span class="nav-number">1.2.2.</span> <span class="nav-text">python的安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第一个python程序（Hello-World-）"><span class="nav-number">1.2.3.</span> <span class="nav-text">第一个python程序（Hello World!）</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zengmianhui</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zengmianhui"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
