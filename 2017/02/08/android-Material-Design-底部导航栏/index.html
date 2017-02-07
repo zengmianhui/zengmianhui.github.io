@@ -1,0 +1,657 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="android,Material Design," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="android Material Design 底部导航栏实现效果">
+<meta property="og:type" content="article">
+<meta property="og:title" content="android Material Design 底部导航栏">
+<meta property="og:url" content="https://zengmianhui.github.io/2017/02/08/android-Material-Design-底部导航栏/index.html">
+<meta property="og:site_name" content="zengmianhui's personal blog">
+<meta property="og:description" content="android Material Design 底部导航栏实现效果">
+<meta property="og:image" content="http://img.blog.csdn.net/20170208030222983?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-02-07T19:24:57.464Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="android Material Design 底部导航栏">
+<meta name="twitter:description" content="android Material Design 底部导航栏实现效果">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170208030222983?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> android Material Design 底部导航栏 | zengmianhui's personal blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">zengmianhui's personal blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                android Material Design 底部导航栏
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-08T03:22:38+08:00" content="2017-02-08">
+              2017-02-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/android/Material-Design/" itemprop="url" rel="index">
+                    <span itemprop="name">Material Design</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/08/android-Material-Design-底部导航栏/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/08/android-Material-Design-底部导航栏/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="android-Material-Design-底部导航栏"><a href="#android-Material-Design-底部导航栏" class="headerlink" title="android Material Design 底部导航栏"></a>android Material Design 底部导航栏</h1><h2 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h2><p><img src="http://img.blog.csdn.net/20170208030222983?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br><a id="more"></a></p>
+<h2 id="配置gradle依赖"><a href="#配置gradle依赖" class="headerlink" title="配置gradle依赖"></a>配置gradle依赖</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">compile &apos;com.android.support:appcompat-v7:25.1.0&apos;</div><div class="line">//注意：V4包一定要加，material design是依赖V4包的</div><div class="line">//不加，某些类可能报“ClassNotFoundException”</div><div class="line">compile &apos;com.android.support:support-v4:25.1.0&apos;</div><div class="line">compile &apos;com.android.support:design:25.1.0&apos;</div></pre></td></tr></table></figure>
+<h2 id="使用BottomNavigationView"><a href="#使用BottomNavigationView" class="headerlink" title="使用BottomNavigationView"></a>使用BottomNavigationView</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</div><div class="line">&lt;RelativeLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">    xmlns:tools=&quot;http://schemas.android.com/tools&quot;</div><div class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</div><div class="line">    android:id=&quot;@+id/activity_main&quot;</div><div class="line">    android:layout_width=&quot;match_parent&quot;</div><div class="line">    android:layout_height=&quot;match_parent&quot;</div><div class="line">    tools:context=&quot;com.kangda.app.MainActivity&quot;&gt;</div><div class="line">    &lt;!--一定要加入V4包和Material Design包的依赖--&gt;</div><div class="line">    &lt;!--itemIconTint设置图标的颜色--&gt;</div><div class="line">    &lt;!--itemTextColor设置文本标题的颜色--&gt;</div><div class="line">    &lt;android.support.design.widget.BottomNavigationView</div><div class="line">        android:id=&quot;@+id/nav_bottom&quot;</div><div class="line">        android:layout_width=&quot;match_parent&quot;</div><div class="line">        android:layout_height=&quot;50dp&quot;</div><div class="line">        android:layout_alignParentBottom=&quot;true&quot;</div><div class="line">        app:itemIconTint=&quot;#767676&quot;</div><div class="line">        app:itemTextColor=&quot;#767676&quot;</div><div class="line">        app:menu=&quot;@menu/nav_bottom_item&quot;</div><div class="line">        &gt; &lt;/android.support.design.widget.BottomNavigationView&gt;</div><div class="line">&lt;/RelativeLayout&gt;</div></pre></td></tr></table></figure>
+<h2 id="res-menu-nav-bottom-item-xml"><a href="#res-menu-nav-bottom-item-xml" class="headerlink" title="res/menu/nav_bottom_item.xml"></a>res/menu/nav_bottom_item.xml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</div><div class="line">&lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;</div><div class="line">    &gt;</div><div class="line">    &lt;!--showAsAction如果有剩余空间就显示出来，否则隐藏--&gt;</div><div class="line">    &lt;item android:id=&quot;@+id/menu_pk&quot;</div><div class="line">        android:enabled=&quot;true&quot;</div><div class="line">        app:showAsAction=&quot;ifRoom&quot;</div><div class="line">        android:title=&quot;@string/menu_title_pk&quot;</div><div class="line">        android:icon=&quot;@mipmap/menu_pk&quot; /&gt;</div><div class="line">    &lt;item android:id=&quot;@+id/menu_home&quot;</div><div class="line">        android:enabled=&quot;true&quot;</div><div class="line">        app:showAsAction=&quot;ifRoom&quot;</div><div class="line">        android:title=&quot;@string/menu_title_home&quot;</div><div class="line">        android:icon=&quot;@mipmap/menu_home_press&quot; /&gt;</div><div class="line">    &lt;item android:id=&quot;@+id/menu_mine&quot;</div><div class="line">        android:enabled=&quot;true&quot;</div><div class="line">        app:showAsAction=&quot;ifRoom&quot;</div><div class="line">        android:title=&quot;@string/menu_title_mine&quot;</div><div class="line">        android:icon=&quot;@mipmap/menu_mine&quot; /&gt;</div><div class="line">&lt;/menu&gt;</div></pre></td></tr></table></figure>
+<h2 id="src-MainActivity-java"><a href="#src-MainActivity-java" class="headerlink" title="src/MainActivity.java"></a>src/MainActivity.java</h2><p>@BindView这注解依赖ButterKnife，这个不必理会<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">@BindView(R.id.nav_bottom)</div><div class="line">    protected BottomNavigationView navBottom;</div><div class="line">    @Override</div><div class="line">    protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">        super.onCreate(savedInstanceState);</div><div class="line">        setContentView(R.layout.activity_main);</div><div class="line">        ButterKnife.bind(this);</div><div class="line">        navBottom.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() &#123;</div><div class="line">            @Override</div><div class="line">            public boolean onNavigationItemSelected(@NonNull MenuItem item) &#123;</div><div class="line">                switch (item.getItemId())&#123;</div><div class="line">                    case R.id.menu_pk:</div><div class="line">                        Toast.makeText(MainActivity.this, &quot;PK&quot;, Toast.LENGTH_SHORT).show();</div><div class="line">                        break;</div><div class="line">                    case R.id.menu_home:</div><div class="line">                        Toast.makeText(MainActivity.this, &quot;主页&quot;, Toast.LENGTH_SHORT).show();</div><div class="line">                        break;</div><div class="line">                    case R.id.menu_mine:</div><div class="line">                        Toast.makeText(MainActivity.this, &quot;我的&quot;, Toast.LENGTH_SHORT).show();</div><div class="line">                        break;</div><div class="line">                &#125;</div><div class="line">                return false;</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><blockquote>
+<p>盲目照抄android官方文档带来的问题</p>
+<p>以下是官方文档抄过来的，有点问题<br>问题在这一句代码<br>xmlns:design=”<a href="http://schema.android.com/apk/res/android.support.design" target="_blank" rel="external">http://schema.android.com/apk/res/android.support.design</a>“<br>正确的代码是<br>xmlns:app=”<a href="http://schemas.android.com/apk/res-auto" target="_blank" rel="external">http://schemas.android.com/apk/res-auto</a>“</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">layout resource file:</div><div class="line"> &lt;android.support.design.widget.BottomNavigationView</div><div class="line">     xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;</div><div class="line">     xmlns:design=&quot;http://schema.android.com/apk/res/android.support.design&quot;</div><div class="line">     android:id=&quot;@+id/navigation&quot;</div><div class="line">     android:layout_width=&quot;match_parent&quot;</div><div class="line">     android:layout_height=&quot;56dp&quot;</div><div class="line">     android:layout_gravity=&quot;start&quot;</div><div class="line">     design:menu=&quot;@menu/my_navigation_items&quot; /&gt;</div><div class="line"></div><div class="line"> res/menu/my_navigation_items.xml:</div><div class="line"> &lt;menu xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;</div><div class="line">     &lt;item android:id=&quot;@+id/action_search&quot;</div><div class="line">          android:title=&quot;@string/menu_search&quot;</div><div class="line">          android:icon=&quot;@drawable/ic_search&quot; /&gt;</div><div class="line">     &lt;item android:id=&quot;@+id/action_settings&quot;</div><div class="line">          android:title=&quot;@string/menu_settings&quot;</div><div class="line">          android:icon=&quot;@drawable/ic_add&quot; /&gt;</div><div class="line">     &lt;item android:id=&quot;@+id/action_navigation&quot;</div><div class="line">          android:title=&quot;@string/menu_navigation&quot;</div><div class="line">          android:icon=&quot;@drawable/ic_action_navigation_menu&quot; /&gt;</div><div class="line"> &lt;/menu&gt;</div></pre></td></tr></table></figure>
+<p>这个代码不会报错，但是XML布局预览无任何效果，暂时不知道是什么原因。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android/" rel="tag">#android</a>
+          
+            <a href="/tags/Material-Design/" rel="tag">#Material Design</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/02/06/运行我的第一个python程序/" rel="next" title="运行我的第一个python程序">
+                <i class="fa fa-chevron-left"></i> 运行我的第一个python程序
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/08/android-Material-Design-底部导航栏/"
+           data-title="android Material Design 底部导航栏" data-url="https://zengmianhui.github.io/2017/02/08/android-Material-Design-底部导航栏/">
+      </div>
+    
+  </div>
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/zengmianhui.github.io/images/avatar.jpg"
+               alt="zengmianhui" />
+          <p class="site-author-name" itemprop="name">zengmianhui</p>
+          <p class="site-description motion-element" itemprop="description">来这里，查看更多技术的分享</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#android-Material-Design-底部导航栏"><span class="nav-number">1.</span> <span class="nav-text">android Material Design 底部导航栏</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#实现效果"><span class="nav-number">1.1.</span> <span class="nav-text">实现效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置gradle依赖"><span class="nav-number">1.2.</span> <span class="nav-text">配置gradle依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用BottomNavigationView"><span class="nav-number">1.3.</span> <span class="nav-text">使用BottomNavigationView</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#res-menu-nav-bottom-item-xml"><span class="nav-number">1.4.</span> <span class="nav-text">res/menu/nav_bottom_item.xml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#src-MainActivity-java"><span class="nav-number">1.5.</span> <span class="nav-text">src/MainActivity.java</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">1.6.</span> <span class="nav-text">注意</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zengmianhui</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"zengmianhui"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
