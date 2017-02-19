@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="GreenDao,sqlite,框架,android," />
+  <meta name="keywords" content="android,GreenDao,sqlite,框架," />
 
 
 
@@ -84,21 +84,18 @@
 
 
 
-<meta name="description" content="[TOC]
-GreenDao一、简介GreenDao是一个对象映射数据解决方案的快速开发框架，很多sql语句直接变换简单的代码。
+<meta name="description" content="GreenDao一、简介GreenDao是一个对象映射数据解决方案的快速开发框架，很多sql语句直接变换简单的代码。
 一、greenDao的配置project/build.gradle12345678910buildscript &amp;#123;    repositories &amp;#123;        jcenter()    &amp;#125;    dependencies &amp;#123;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GreenDao的使用以及一些细节的总结">
 <meta property="og:url" content="https://zengmianhui.github.io/2017/02/20/GreenDao的使用以及一些细节的总结/index.html">
 <meta property="og:site_name" content="zengmianhui's personal blog">
-<meta property="og:description" content="[TOC]
-GreenDao一、简介GreenDao是一个对象映射数据解决方案的快速开发框架，很多sql语句直接变换简单的代码。
+<meta property="og:description" content="GreenDao一、简介GreenDao是一个对象映射数据解决方案的快速开发框架，很多sql语句直接变换简单的代码。
 一、greenDao的配置project/build.gradle12345678910buildscript &amp;#123;    repositories &amp;#123;        jcenter()    &amp;#125;    dependencies &amp;#123;">
-<meta property="og:updated_time" content="2017-02-19T19:57:37.167Z">
+<meta property="og:updated_time" content="2017-02-19T19:58:52.246Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GreenDao的使用以及一些细节的总结">
-<meta name="twitter:description" content="[TOC]
-GreenDao一、简介GreenDao是一个对象映射数据解决方案的快速开发框架，很多sql语句直接变换简单的代码。
+<meta name="twitter:description" content="GreenDao一、简介GreenDao是一个对象映射数据解决方案的快速开发框架，很多sql语句直接变换简单的代码。
 一、greenDao的配置project/build.gradle12345678910buildscript &amp;#123;    repositories &amp;#123;        jcenter()    &amp;#125;    dependencies &amp;#123;">
 
 
@@ -359,8 +356,7 @@ GreenDao一、简介GreenDao是一个对象映射数据解决方案的快速开�
       
 
       
-        <p>[TOC]</p>
-<h1 id="GreenDao"><a href="#GreenDao" class="headerlink" title="GreenDao"></a>GreenDao</h1><h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>GreenDao是一个对象映射数据解决方案的快速开发框架，很多sql语句直接变换简单的代码。</p>
+        <h1 id="GreenDao"><a href="#GreenDao" class="headerlink" title="GreenDao"></a>GreenDao</h1><h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>GreenDao是一个对象映射数据解决方案的快速开发框架，很多sql语句直接变换简单的代码。</p>
 <h2 id="一、greenDao的配置"><a href="#一、greenDao的配置" class="headerlink" title="一、greenDao的配置"></a>一、greenDao的配置</h2><h3 id="project-build-gradle"><a href="#project-build-gradle" class="headerlink" title="project/build.gradle"></a>project/build.gradle</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">buildscript &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">    dependencies &#123;</div><div class="line">        classpath &apos;org.greenrobot:greendao-gradle-plugin:3.2.1&apos;</div><div class="line">        // NOTE: Do not place your application dependencies here; they belong</div><div class="line">        // in the individual module build.gradle files</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="app-build-gradle"><a href="#app-build-gradle" class="headerlink" title="app/build.gradle"></a>app/build.gradle</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">apply plugin: &apos;org.greenrobot.greendao&apos;</div><div class="line">android &#123;</div><div class="line">………………</div><div class="line">&#125;</div><div class="line">dependencies &#123;</div><div class="line"></div><div class="line">………………</div><div class="line">    //数据库操作</div><div class="line">    compile &apos;org.greenrobot:greendao-generator:3.2.0&apos;</div><div class="line">    compile &apos;org.greenrobot:greendao:3.2.0&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <a id="more"></a>
@@ -398,13 +394,13 @@ GreenDao一、简介GreenDao是一个对象映射数据解决方案的快速开�
       
         <div class="post-tags">
           
+            <a href="/tags/android/" rel="tag">#android</a>
+          
             <a href="/tags/GreenDao/" rel="tag">#GreenDao</a>
           
             <a href="/tags/sqlite/" rel="tag">#sqlite</a>
           
             <a href="/tags/框架/" rel="tag">#框架</a>
-          
-            <a href="/tags/android/" rel="tag">#android</a>
           
         </div>
       
