@@ -253,6 +253,178 @@
             
               
                 
+                <a class="post-title-link" href="/2017/02/20/GreenDao的使用以及一些细节的总结/" itemprop="url">
+                  GreenDao的使用以及一些细节的总结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-02-20T03:49:11+08:00" content="2017-02-20">
+              2017-02-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/android/GreenDao/" itemprop="url" rel="index">
+                    <span itemprop="name">GreenDao</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/android/GreenDao/sqlite/" itemprop="url" rel="index">
+                    <span itemprop="name">sqlite</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/android/GreenDao/sqlite/框架/" itemprop="url" rel="index">
+                    <span itemprop="name">框架</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/02/20/GreenDao的使用以及一些细节的总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/20/GreenDao的使用以及一些细节的总结/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>[TOC]</p>
+<h1 id="GreenDao"><a href="#GreenDao" class="headerlink" title="GreenDao"></a>GreenDao</h1><h2 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h2><p>GreenDao是一个对象映射数据解决方案的快速开发框架，很多sql语句直接变换简单的代码。</p>
+<h2 id="一、greenDao的配置"><a href="#一、greenDao的配置" class="headerlink" title="一、greenDao的配置"></a>一、greenDao的配置</h2><h3 id="project-build-gradle"><a href="#project-build-gradle" class="headerlink" title="project/build.gradle"></a>project/build.gradle</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">buildscript &#123;</div><div class="line">    repositories &#123;</div><div class="line">        jcenter()</div><div class="line">    &#125;</div><div class="line">    dependencies &#123;</div><div class="line">        classpath &apos;org.greenrobot:greendao-gradle-plugin:3.2.1&apos;</div><div class="line">        // NOTE: Do not place your application dependencies here; they belong</div><div class="line">        // in the individual module build.gradle files</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="app-build-gradle"><a href="#app-build-gradle" class="headerlink" title="app/build.gradle"></a>app/build.gradle</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">apply plugin: &apos;org.greenrobot.greendao&apos;</div><div class="line">android &#123;</div><div class="line">………………</div><div class="line">&#125;</div><div class="line">dependencies &#123;</div><div class="line"></div><div class="line">………………</div><div class="line">    //数据库操作</div><div class="line">    compile &apos;org.greenrobot:greendao-generator:3.2.0&apos;</div><div class="line">    compile &apos;org.greenrobot:greendao:3.2.0&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>##二、使用</p>
+<h3 id="配置注解映射实体类"><a href="#配置注解映射实体类" class="headerlink" title="配置注解映射实体类"></a>配置注解映射实体类</h3><p>greendao是插件化开发的，所以配置完注解，直接整个工程rebuild一下，就会自动生成Dao部分代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">@Entity(nameInDb = &quot;t_book&quot;)</div><div class="line">public class Book &#123;</div><div class="line">    @Id(autoincrement = true)</div><div class="line">    @Property(nameInDb = &quot;id&quot;)</div><div class="line">    private Long id;</div><div class="line">    @Property(nameInDb = &quot;f_book&quot;)</div><div class="line">    private String book;</div><div class="line">    @ToMany(referencedJoinProperty = &quot;bookId&quot;)</div><div class="line">    private List&lt;Unit&gt; units;</div><div class="line">    public Long getId() &#123;</div><div class="line">        return id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setId(Long id) &#123;</div><div class="line">        this.id = id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public String getBook() &#123;</div><div class="line">        return book;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setBook(String book) &#123;</div><div class="line">        this.book = book;</div><div class="line">    &#125;</div><div class="line">    @Generated//一定要标识这个@Generated，不要标识@Keep</div><div class="line">    public List&lt;Unit&gt; getUnits() &#123;</div><div class="line">    return units;</div><div class="line">    &#125;</div><div class="line">    @Generated//一定要标识这个@Generated，不要标识@Keep</div><div class="line">    public void setUnits(List&lt;Unit&gt; units) &#123;</div><div class="line">        this.units = null;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">@Id(autoincrement = true)</div><div class="line">    @Property(nameInDb = &quot;id&quot;)</div><div class="line">    private long id;</div><div class="line">    @Property(nameInDb = &quot;f_book_id&quot;)</div><div class="line">    private long bookId;//书籍id</div><div class="line">    @ToOne(joinProperty = &quot;bookId&quot;)//请注意：joinProperty这是变量名，不是数据库字段</div><div class="line">    private Book book;</div><div class="line">    @Property(nameInDb = &quot;f_unit&quot;)</div><div class="line">    private String unit;//单元</div><div class="line">    public long getId() &#123;</div><div class="line">        return id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setId(long id) &#123;</div><div class="line">        this.id = id;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public long getBookId() &#123;</div><div class="line">        return bookId;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setBookId(long bookId) &#123;</div><div class="line">        this.bookId = bookId;</div><div class="line">    &#125;</div><div class="line">    @Generated(hash = 8805314)//一定要标识这个@Generated，不要标识@Keep</div><div class="line">    public Book getBook() &#123;</div><div class="line">	    return book;</div><div class="line">    &#125;</div><div class="line">    @Generated//一定要标识这个@Generated，不要标识@Keep</div><div class="line">    public void setBook( Book book) &#123;</div><div class="line">	    this.book=book;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>@Entity：标识这是一个数据库映射类<br>@Id(autoincrement = true)：标识主键，autoincrement = true设置主键自增<br>@Property(nameInDb = “id”)：标识为数据库字段，nameInDb = “id”表示对应数据库的字段名。如果不使用nameInDb，将默认采用变量名作为数据库的字段名。<br>@ToMany(referencedJoinProperty = “bookId”)：表示一对多的关系，referencedJoinProperty = “bookId”，表示引用关联实体的属性“bookId”，此属性名对应引用实体类的变量名。<br>@ToOne(joinProperty = “bookId”)：表示一对一，或者多对一的关系，joinProperty = “bookId”，表示分享属性“bookId”，此属性名对应本类的变量名。</p>
+<h3 id="获取DaoSession对数据进行操作"><a href="#获取DaoSession对数据进行操作" class="headerlink" title="获取DaoSession对数据进行操作"></a>获取DaoSession对数据进行操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">DaoMaster.DevOpenHelper mHelper =new DaoMaster.DevOpenHelper(App.getInstance(), DB_NAME, null);//DB_NAME，可以设置为已经存在的外部数据库，如果没有，会自动创建</div><div class="line">SQLiteDatabase db = mHelper.getWritableDatabase();</div><div class="line">DaoSession mDaoSession = mDaoMaster.newSession();//同步操作时，需要使用DaoSession</div><div class="line">AsyncSession mAsyncSession= mDaoSession.startAsyncSession();//异步处理时，需要使用AsyncSession</div></pre></td></tr></table></figure>
+<p>查询数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//直接查询全部</div><div class="line">UnitDao unitDao = GreenDaoHelper.getDaoSession().getUnitDao();</div><div class="line">        unitDao.loadAll();</div><div class="line">//根据条件查询</div><div class="line">UnitDao unitDao = mDaoSession .getUnitDao();</div><div class="line">        WhereCondition eq = unitDao.Properties.Id.eq(1);</div><div class="line">        WhereCondition eq5 = unitDao.Properties.BookId.eq(1);</div><div class="line">        List&lt;Unit&gt; list = unitDao.queryBuilder().where(eq1, eq2, eq3, eq4).build().list();</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//异步数据查询</div><div class="line">StudyWordScoreDao studyWordScoreDao = GreenDaoHelper.getDaoSession().getStudyWordScoreDao();</div><div class="line">        WhereCondition eq1 = StudyWordScoreDao.Properties.BookId.eq(bookId);</div><div class="line">        WhereCondition eq2 = StudyWordScoreDao.Properties.UnitId.eq(unitId);</div><div class="line">        WhereCondition eq3 = StudyWordScoreDao.Properties.UnitId.eq(userId);</div><div class="line">        WhereCondition eq4 = StudyWordScoreDao.Properties.UnitId.eq(recordId);</div><div class="line">        Query&lt;StudyWordScore&gt; build = studyWordScoreDao.queryBuilder().where(eq1, eq2, eq3, eq4).build();</div><div class="line">//        WhereCondition and = wordDao.queryBuilder().and(eq, eq1);</div><div class="line">        asyncSession.queryList(build);</div><div class="line">        asyncSession.setListenerMainThread(asyncOperationListener);</div></pre></td></tr></table></figure>
+<p>## </p>
+<p>##细节问题</p>
+<h3 id="凡是涉及ID的一定要使用Long类型的包装类"><a href="#凡是涉及ID的一定要使用Long类型的包装类" class="headerlink" title="凡是涉及ID的一定要使用Long类型的包装类"></a>凡是涉及ID的一定要使用Long类型的包装类</h3><p> 凡是涉及ID的一定要使用Long类型的包装类，不然，autoincrement = true会失效，我之前就是这样，插入的数据会直接赋为“0”<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//根据官网的方法，说主键赋值为空，主键就会自增，但是编译器不通过，报错，因为初始为0，不是null，所以我就直接不设置主键值，果然就可以了</div><div class="line">new Book(null,&quot;必修一&quot;);</div></pre></td></tr></table></figure></p>
+<h3 id="关联实体的类的get-set方法一定要使用-Generate"><a href="#关联实体的类的get-set方法一定要使用-Generate" class="headerlink" title="关联实体的类的get/set方法一定要使用@Generate"></a>关联实体的类的get/set方法一定要使用@Generate</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">//只有使用了Generated，greenDao的插件才会将getset修改成以下代码，如果使用@keep那就保留getset代码，也就没有关联效果了</div><div class="line">@Generated(hash = 835179934)</div><div class="line">    public List&lt;Unit&gt; getUnits() &#123;</div><div class="line">        if (units == null) &#123;</div><div class="line">            final DaoSession daoSession = this.daoSession;</div><div class="line">            if (daoSession == null) &#123;</div><div class="line">                throw new DaoException(&quot;Entity is detached from DAO context&quot;);</div><div class="line">            &#125;</div><div class="line">            UnitDao targetDao = daoSession.getUnitDao();</div><div class="line">            List&lt;Unit&gt; unitsNew = targetDao._queryBook_Units(id);</div><div class="line">            synchronized (this) &#123;</div><div class="line">                if (units == null) &#123;</div><div class="line">                    units = unitsNew;</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return units;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    /** Resets a to-many relationship, making the next get call to query for a fresh result. */</div><div class="line">    @Generated(hash = 121816020)</div><div class="line">    public synchronized void resetUnits() &#123;</div><div class="line">        units = null;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>暂时只总结部分，后续会继续更新此文章</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/02/09/android-Toolbar的使用/" itemprop="url">
                   android Toolbar的使用
                 </a>
@@ -1415,140 +1587,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2017/01/27/如何在github上创建个人博客？/" itemprop="url">
-                  如何在github上创建个人博客？
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-27T01:13:43+08:00" content="2017-01-27">
-              2017-01-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/其他/" itemprop="url" rel="index">
-                    <span itemprop="name">其他</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/其他/github/" itemprop="url" rel="index">
-                    <span itemprop="name">github</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2017/01/27/如何在github上创建个人博客？/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/27/如何在github上创建个人博客？/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>摘要:<br>    个人如何创建免费博客呢？github就有为用户提供创建个人博客的机会，如果你是一个开发者完全可以为自己定义一个个人博客。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/01/27/如何在github上创建个人博客？/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1595,7 +1633,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1603,7 +1641,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1612,7 +1650,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
