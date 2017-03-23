@@ -98,7 +98,7 @@ Activity启动模式及Intent Flags与栈的关联分析
 <meta property="og:image" content="https://zengmianhui.github.io/2017/03/22/理解Android-Activity运行模式（understand-Android-Activity-s-launch-mode）/2017-03-23_105452.png">
 <meta property="og:image" content="https://zengmianhui.github.io/2017/03/22/理解Android-Activity运行模式（understand-Android-Activity-s-launch-mode）/singleTask.gif">
 <meta property="og:image" content="https://zengmianhui.github.io/2017/03/22/理解Android-Activity运行模式（understand-Android-Activity-s-launch-mode）/singleInstance.png">
-<meta property="og:updated_time" content="2017-03-23T15:17:42.981Z">
+<meta property="og:updated_time" content="2017-03-23T15:22:47.036Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解Android Activity运行模式（understand Android Activity's launch mode）">
 <meta name="twitter:description" content="文章参考自Understand Android Activity’s LaunchMode:standard,singleTop,singleTask,and singleInstance
@@ -342,7 +342,7 @@ Activity启动模式及Intent Flags与栈的关联分析
       
         <h2 id="文章参考自"><a href="#文章参考自" class="headerlink" title="文章参考自"></a>文章参考自</h2><p><a href="https://inthecheesefactory.com/blog/understand-android-activity-launchmode/en" target="_blank" rel="external">Understand Android Activity’s LaunchMode:standard,singleTop,singleTask,and singleInstance</a></p>
 <p><a href="http://blog.csdn.net/vipzjyno1/article/details/25463457" target="_blank" rel="external">Activity启动模式及Intent Flags与栈的关联分析</a></p>
-<h1 id="理解Android-Activity运行模式（understand-Android-Activity’s-launch-mode）"><a href="#理解Android-Activity运行模式（understand-Android-Activity’s-launch-mode）" class="headerlink" title="理解Android Activity运行模式（understand Android Activity’s launch mode）"></a>理解Android Activity运行模式（understand Android Activity’s launch mode）</h1><h2 id="Activity’s-LaunchMode"><a href="#Activity’s-LaunchMode" class="headerlink" title="Activity’s LaunchMode"></a>Activity’s LaunchMode</h2><p>activity的启动模式，设置了不同的启动模式activity会不同的启动方式，一般使用Intent中的Flag常量来标示如何启动一个Activity</p>
+<h1 id="理解Android-Activity运行模式（understand-Android-Activity’s-launch-mode）"><a href="#理解Android-Activity运行模式（understand-Android-Activity’s-launch-mode）" class="headerlink" title="理解Android Activity运行模式（understand Android Activity’s launch mode）"></a>理解Android Activity运行模式（understand Android Activity’s launch mode）</h1><h2 id="Activity’s-LaunchMode"><a href="#Activity’s-LaunchMode" class="headerlink" title="Activity’s LaunchMode"></a>Activity’s LaunchMode</h2><p>activity的启动模式，设置了不同的启动模式activity会不同的启动方式，一般使用Intent中的Flag常量来标示如何启动一个Activity<br><a id="more"></a></p>
 <h2 id="understand-Tasks-and-Back-Stack-任务队列和回退栈"><a href="#understand-Tasks-and-Back-Stack-任务队列和回退栈" class="headerlink" title="understand Tasks and Back Stack(任务队列和回退栈)"></a>understand Tasks and Back Stack(任务队列和回退栈)</h2><h3 id="Task"><a href="#Task" class="headerlink" title="Task"></a>Task</h3><p>一个Task是由多个Activity组成，一个应用程序可以有多个任务队列，在Android7.0的新特性——多窗口模式，每一个窗口都会创建一个Task</p>
 <h3 id="Back-Stack"><a href="#Back-Stack" class="headerlink" title="Back Stack"></a>Back Stack</h3><p>Task中的多个Activity被安排在Back Stack中</p>
 <h3 id="可以通过Activity在app中的状态来理解Task和Stack"><a href="#可以通过Activity在app中的状态来理解Task和Stack" class="headerlink" title="可以通过Activity在app中的状态来理解Task和Stack"></a>可以通过Activity在app中的状态来理解Task和Stack</h3><p>1、 在Task中，当Activity A启动Activity B时，当前A会调用onPause()-onStop()，A不在栈顶，没有显示在最前，但是A会保存一些基本的状态（例如滚动的位置或者text），Task状态为A-B，如果用户点击navigation back button时,Activity B会调用onPause()-onStop()-onDestroy()对栈顶进行pop（移出并销毁）,此时Activity A回到栈顶，调用onRestart()-onStart()-onResume()，恢复原来的状态</p>
