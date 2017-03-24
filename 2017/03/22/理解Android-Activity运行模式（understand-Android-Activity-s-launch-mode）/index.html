@@ -98,7 +98,7 @@ Activity启动模式及Intent Flags与栈的关联分析
 <meta property="og:image" content="https://zengmianhui.github.io/2017/03/22/理解Android-Activity运行模式（understand-Android-Activity-s-launch-mode）/2017-03-23_105452.png">
 <meta property="og:image" content="https://zengmianhui.github.io/2017/03/22/理解Android-Activity运行模式（understand-Android-Activity-s-launch-mode）/singleTask.gif">
 <meta property="og:image" content="https://zengmianhui.github.io/2017/03/22/理解Android-Activity运行模式（understand-Android-Activity-s-launch-mode）/singleInstance.png">
-<meta property="og:updated_time" content="2017-03-23T15:22:47.036Z">
+<meta property="og:updated_time" content="2017-03-24T11:19:31.497Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解Android Activity运行模式（understand Android Activity's launch mode）">
 <meta name="twitter:description" content="文章参考自Understand Android Activity’s LaunchMode:standard,singleTop,singleTask,and singleInstance
@@ -388,7 +388,7 @@ Activity启动模式及Intent Flags与栈的关联分析
 </tbody>
 </table>
 <h3 id="详细解释Intent-FLAG"><a href="#详细解释Intent-FLAG" class="headerlink" title="详细解释Intent.FLAG"></a>详细解释Intent.FLAG</h3><h4 id="FLAG-ACTIVITY-NEW-TASK"><a href="#FLAG-ACTIVITY-NEW-TASK" class="headerlink" title="FLAG_ACTIVITY_NEW_TASK"></a>FLAG_ACTIVITY_NEW_TASK</h4><p>这个flag必须与taskAffinity结合才能使用</p>
-<h4 id="FLAG-ACTIVITY-CLEAR-TOP"><a href="#FLAG-ACTIVITY-CLEAR-TOP" class="headerlink" title="FLAG_ACTIVITY_CLEAR_TOP"></a>FLAG_ACTIVITY_CLEAR_TOP</h4><p>请注意和singleTask的区别，与singleTask的区别是，会销毁启动的目标activity，再重新创建一个实例<br>如果当前Task为A-B-C-D，则从D-B，B会被销毁重新创建</p>
+<h4 id="FLAG-ACTIVITY-CLEAR-TOP"><a href="#FLAG-ACTIVITY-CLEAR-TOP" class="headerlink" title="FLAG_ACTIVITY_CLEAR_TOP"></a>FLAG_ACTIVITY_CLEAR_TOP</h4><p>请注意和singleTask的区别，与singleTask的区别，FLAG_ACTIVITY_CLEAR_TOP会销毁启动的目标activity，再重新创建一个实例<br>如果当前Task为A-B-C-D，则从D-B，B会被销毁重新创建</p>
 <p>以下为打印的结果，可以得知，B被重新创建</p>
 <blockquote>
 <p>03-23 13:23:01.858 19000-19000/com.app.androidbasic I/ActivityB: onDestroy: 调用onDestroy</p>
