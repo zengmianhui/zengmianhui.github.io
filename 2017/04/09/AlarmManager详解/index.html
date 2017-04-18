@@ -84,18 +84,31 @@
 
 
 
-<meta name="description" content="AlarmManager详解AlarmManager通常用途是用来开发手机闹钟，但是AlarmManager的用处并只是这个。AlarmManager其实是一个全局定时器，它可以在指定时间或指定周期启动其他组件（Activity、Service、BroadcastReceiver）">
+<meta name="description" content="参考链接Android闹钟设置的解决方案——HanWen  
+Android AlarmManager 定时会 “失效” 的问题——开源中国社区的问答 
+保证Android后台不被杀死的几种方法——不吃早饭好不好  
+Android中运用AlarmManager需注意设置进程属性——choujs  
+AlarmManager 怎样在进程被干掉的情况下触发回调——百度知道
+AlarmManager详">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AlarmManager详解">
 <meta property="og:url" content="https://zengmianhui.github.io/2017/04/09/AlarmManager详解/index.html">
 <meta property="og:site_name" content="zengmianhui's personal blog">
-<meta property="og:description" content="AlarmManager详解AlarmManager通常用途是用来开发手机闹钟，但是AlarmManager的用处并只是这个。AlarmManager其实是一个全局定时器，它可以在指定时间或指定周期启动其他组件（Activity、Service、BroadcastReceiver）">
-<meta property="og:image" content="https://zengmianhui.github.io/2017/04/09/AlarmManager详解/01.gif">
-<meta property="og:updated_time" content="2017-04-09T13:52:38.694Z">
+<meta property="og:description" content="参考链接Android闹钟设置的解决方案——HanWen  
+Android AlarmManager 定时会 “失效” 的问题——开源中国社区的问答 
+保证Android后台不被杀死的几种方法——不吃早饭好不好  
+Android中运用AlarmManager需注意设置进程属性——choujs  
+AlarmManager 怎样在进程被干掉的情况下触发回调——百度知道
+AlarmManager详">
+<meta property="og:updated_time" content="2017-04-18T13:26:50.398Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AlarmManager详解">
-<meta name="twitter:description" content="AlarmManager详解AlarmManager通常用途是用来开发手机闹钟，但是AlarmManager的用处并只是这个。AlarmManager其实是一个全局定时器，它可以在指定时间或指定周期启动其他组件（Activity、Service、BroadcastReceiver）">
-<meta name="twitter:image" content="https://zengmianhui.github.io/2017/04/09/AlarmManager详解/01.gif">
+<meta name="twitter:description" content="参考链接Android闹钟设置的解决方案——HanWen  
+Android AlarmManager 定时会 “失效” 的问题——开源中国社区的问答 
+保证Android后台不被杀死的几种方法——不吃早饭好不好  
+Android中运用AlarmManager需注意设置进程属性——choujs  
+AlarmManager 怎样在进程被干掉的情况下触发回调——百度知道
+AlarmManager详">
 
 
 
@@ -331,7 +344,18 @@
       
 
       
-        <h1 id="AlarmManager详解"><a href="#AlarmManager详解" class="headerlink" title="AlarmManager详解"></a>AlarmManager详解</h1><p>AlarmManager通常用途是用来开发手机闹钟，但是AlarmManager的用处并只是这个。AlarmManager其实是一个全局定时器，它可以在指定时间或指定周期启动其他组件（Activity、Service、BroadcastReceiver）<br><a id="more"></a></p>
+        <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="http://www.jianshu.com/p/1f919c6eeff6" target="_blank" rel="external">Android闹钟设置的解决方案——HanWen</a>  </p>
+<p><a href="http://www.oschina.net/question/261246_140677" target="_blank" rel="external">Android AlarmManager 定时会 “失效” 的问题——开源中国社区的问答</a> </p>
+<p><a href="http://www.cnblogs.com/dixonyy/p/5163880.html" target="_blank" rel="external">保证Android后台不被杀死的几种方法——不吃早饭好不好</a>  </p>
+<p><a href="http://www.myexception.cn/android/917358.html" target="_blank" rel="external">Android中运用AlarmManager需注意设置进程属性——choujs</a>  </p>
+<p><a href="https://zhidao.baidu.com/question/1178427619022141179.html" target="_blank" rel="external">AlarmManager 怎样在进程被干掉的情况下触发回调——百度知道</a></p>
+<h1 id="AlarmManager详解"><a href="#AlarmManager详解" class="headerlink" title="AlarmManager详解"></a>AlarmManager详解</h1><p>AlarmManager通常用途是用来开发手机闹钟，但是AlarmManager的用处并只是这个。AlarmManager其实是一个全局定时器，它可以在指定时间或指定周期启动其他组件（<code>Activity</code>、<code>Service</code>、<code>BroadcastReceiver</code>）</p>
+<h2 id="主要遇到一些问题"><a href="#主要遇到一些问题" class="headerlink" title="主要遇到一些问题"></a>主要遇到一些问题</h2><ul>
+<li>华为手机上kill应用后，无法唤醒Alarm<br>  参考了一些社区问答，大部分原因都是手机为Alarm设置了<strong>统一的唤醒时间</strong></li>
+<li>不能精确启动闹钟服务<br>  API19以上是无法精确时间的，可以调用<code>setExact()</code>和<code>setWindow()</code></li>
+<li>华为手机上休眠无法启动闹钟服务</li>
+</ul>
+<a id="more"></a>
 <h2 id="主要方法"><a href="#主要方法" class="headerlink" title="主要方法"></a>主要方法</h2><h3 id="set-int-type-long-triggerAtTime-PendingIntent-operation"><a href="#set-int-type-long-triggerAtTime-PendingIntent-operation" class="headerlink" title="set(int type,long triggerAtTime,PendingIntent operation)"></a>set(int type,long triggerAtTime,PendingIntent operation)</h3><p>设置指定triggerAtTime时间启动由operation参数指定组件。其中第一个参数指定定时服务的类型，该参数可接受如下值。</p>
 <ul>
 <li><p><code>ElAPSED_REALTIME</code>：<br>指定从现在开始过了一定时间后启动operation所对应的组件。</p>
@@ -346,21 +370,29 @@
 <h3 id="setInexactRepeating-int-type-long-triggerAtTime-long-interval-PendingIntent-operation"><a href="#setInexactRepeating-int-type-long-triggerAtTime-long-interval-PendingIntent-operation" class="headerlink" title="setInexactRepeating(int type,long triggerAtTime,long interval,PendingIntent operation)"></a>setInexactRepeating(int type,long triggerAtTime,long interval,PendingIntent operation)</h3><p>设置非精确的周期性任务。例如，我们设置Alarm每个小时启动一次，但是系统不一定总在每个小时的开始启动Alarm服务。</p>
 <h3 id="setRepeating-int-type-long-triggerAtTime-long-interval-PendingIntent-operation"><a href="#setRepeating-int-type-long-triggerAtTime-long-interval-PendingIntent-operation" class="headerlink" title="setRepeating(int type,long triggerAtTime,long interval,PendingIntent operation)"></a>setRepeating(int type,long triggerAtTime,long interval,PendingIntent operation)</h3><p>设置一个周期性执行的定时服务。</p>
 <h3 id="cancel-PendingIntent-operation"><a href="#cancel-PendingIntent-operation" class="headerlink" title="cancel(PendingIntent operation)"></a>cancel(PendingIntent operation)</h3><p>取消AlarmManager的定时服务。</p>
-<h2 id="使用AlarmManager做demo示例"><a href="#使用AlarmManager做demo示例" class="headerlink" title="使用AlarmManager做demo示例"></a>使用AlarmManager做demo示例</h2><h3 id="闹钟服务"><a href="#闹钟服务" class="headerlink" title="闹钟服务"></a>闹钟服务</h3><p>代码结构：<br>main/com.app.demo<br>|<strong><em>MainActivity.java——&gt;用户设置闹钟时间<br>|</em></strong>AlarmActivity.java——&gt;闹钟启动时，将启动的Activity<br>|___AudioPlayer.java———&gt;封装的，用来播放音频  </p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><ul>
+<li><p>API 19(Android4.4)开始，AlarmManager的机制是非准确激发的，操作系统会偏移(shift)闹钟来最小化唤醒和电池消耗。不过AlarManager新增了如下两个方法来支持精确激发。</p>
+<ul>
+<li><p><code>setExact(int type long triggerAtMillis,PendingIntent operation)</code><br>设置闹钟闹钟将在精确的时间被激发。</p>
+</li>
+<li><p><code>setWindow(int type,long windowStartMillis,long windowLengthMillis,PendingIntent operation)</code><br>设置闹钟将在精确的时间段内被激发。</p>
+</li>
+</ul>
+</li>
+<li>很显示API19以后无法使用<code>setInexactRepeating()</code>和<code>setRepeating()</code>，也就是无法设置重复闹钟，<strong>唯一解决的方式，也只有启动闹钟的时候再设置一次闹钟，也就变相地实现了重复闹钟了。</strong></li>
+<li>API19以下使用<code>setExact()</code>和<code>setWindow()</code>将会报没有匹配的方法  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java.lang.NoSuchMethodError: android.app.AlarmManager.setExact</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>解决办法是判断SDK版本，根据SDK版本来定义不同的方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int sdkVersion = Integer.valueOf(Build.VERSION.SDK_INT);</div></pre></td></tr></table></figure></p>
+<h2 id="使用AlarmManager做demo示例"><a href="#使用AlarmManager做demo示例" class="headerlink" title="使用AlarmManager做demo示例"></a>使用AlarmManager做demo示例</h2><h3 id="使用AlarmManager"><a href="#使用AlarmManager" class="headerlink" title="使用AlarmManager"></a>使用AlarmManager</h3><h3 id="闹钟服务"><a href="#闹钟服务" class="headerlink" title="闹钟服务"></a>闹钟服务</h3><p>代码结构：<br>main/com.app.demo<br>└──MainActivity.java——&gt;用户设置闹钟时间<br>└──AlarmActivity.java——&gt;闹钟启动时，将启动的Activity<br>└──AudioPlayer.java———&gt;封装的，用来播放音频  </p>
 <blockquote>
 <p>MainActivity.java</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">findViewById(R.id.setDate).setOnClickListener(new View.OnClickListener() &#123;</div><div class="line">    @Override</div><div class="line">    public void onClick(View v) &#123;</div><div class="line">        Calendar currentTime = Calendar.getInstance();</div><div class="line">        new TimePickerDialog(MainActivity.this, new TimePickerDialog.OnTimeSetListener() &#123;</div><div class="line">            @Override</div><div class="line">            public void onTimeSet(TimePicker view, int hourOfDay, int minute) &#123;</div><div class="line">                Intent i=new Intent(MainActivity.this,AlarmActivity.class);</div><div class="line">                //创建PendingIntent对象</div><div class="line">                PendingIntent pi=PendingIntent.getActivity(MainActivity.this,0,i,0);</div><div class="line">                Calendar c=Calendar.getInstance();</div><div class="line">                c.setTimeInMillis(System.currentTimeMillis());</div><div class="line">                //根据用户的选择的时间来设置Calendar对象</div><div class="line">                c.set(Calendar.HOUR,hourOfDay);</div><div class="line">                c.set(Calendar.MINUTE,minute);</div><div class="line">                //获取AlarmManager</div><div class="line">                AlarmManager am= (AlarmManager) getSystemService(ALARM_SERVICE);</div><div class="line">                am.set(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),pi);</div><div class="line">                Toast.makeText(MainActivity.this,&quot;设置闹钟成功&quot;, Toast.LENGTH_LONG).show();</div><div class="line">            &#125;</div><div class="line">        &#125;,currentTime.get(Calendar.HOUR_OF_DAY),currentTime.get(Calendar.MINUTE),false).show();</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">   protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">       super.onCreate(savedInstanceState);</div><div class="line">       setContentView(R.layout.activity_main);</div><div class="line">       findViewById(R.id.setDate).setOnClickListener(new View.OnClickListener() &#123;</div><div class="line">           @Override</div><div class="line">           public void onClick(View v) &#123;</div><div class="line">               Calendar currentTime = Calendar.getInstance();</div><div class="line">               new TimePickerDialog(MainActivity.this, new TimePickerDialog.OnTimeSetListener() &#123;</div><div class="line"></div><div class="line">                   @RequiresApi(api = Build.VERSION_CODES.KITKAT)</div><div class="line">                   @Override</div><div class="line">                   public void onTimeSet(TimePicker view, int hourOfDay, int minute) &#123;</div><div class="line">                       Intent i=new Intent(MainActivity.this,AlarmActivity.class);</div><div class="line">                       //创建PendingIntent对象</div><div class="line">                       PendingIntent pi=PendingIntent.getActivity(MainActivity.this,0,i,0);</div><div class="line">                       Calendar c=Calendar.getInstance();</div><div class="line">                       c.setTimeInMillis(System.currentTimeMillis());</div><div class="line">                       </div><div class="line">                       //Calendar.HOUR这是12小时制因为无论你的TimePickerDialog设置的是12还是24，hourOfDay默认获取的是24小时制的  </div><div class="line">                       //根据用户的选择的时间来设置Calendar对象 c.set(Calendar.HOUR_OF_DAY,hourOfDay);</div><div class="line">                       c.set(Calendar.MINUTE,minute);</div><div class="line">                       //获取AlarmManager</div><div class="line">                       AlarmManager am= (AlarmManager) getSystemService(ALARM_SERVICE);</div><div class="line">                       Log.i(TAG, &quot;onTimeSet: &quot;+SystemInfoUtil.getSDKVersionNumber());</div><div class="line">                       if (SystemInfoUtil.getSDKVersionNumber()&gt;=19)&#123;</div><div class="line">                       //API19以上使用</div><div class="line">                           am.setExact(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),pi);</div><div class="line">                       &#125;else &#123;</div><div class="line">                           am.set(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),pi);</div><div class="line">                       &#125;</div><div class="line">                       Toast.makeText(MainActivity.this,&quot;设置闹钟成功&quot;, Toast.LENGTH_LONG).show();</div><div class="line">                   &#125;</div><div class="line">               &#125;,currentTime.get(Calendar.HOUR_OF_DAY),currentTime.get(Calendar.MINUTE),false).show();</div><div class="line">           &#125;</div><div class="line">       &#125;);</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
 <blockquote>
 <p>AlarmActivity.java</p>
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">protected void onCreate(Bundle savedInstanceState) &#123;</div><div class="line">    super.onCreate(savedInstanceState);</div><div class="line">    setContentView(R.layout.activity_alarm);</div><div class="line">    // 加载音乐</div><div class="line">    try &#123;</div><div class="line">//            String path = RingtoneManager.getActualDefaultRingtoneUri(this, RingtoneManager.TYPE_RINGTONE).getPath();</div><div class="line">        AssetFileDescriptor openFd=getAssets().openFd(&quot;music.mp3&quot;);</div><div class="line">        AudioPlayer.getInstance().play(openFd);</div><div class="line">        AudioPlayer.getInstance().setLooping(true);</div><div class="line">    &#125; catch (IOException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">    new AlertDialog.Builder(this)</div><div class="line">            .setTitle(&quot;闹钟&quot;)</div><div class="line">            .setTitle(&quot;时间到！！！！！ &quot;)</div><div class="line">            .setPositiveButton(&quot;确定&quot;, new DialogInterface.OnClickListener() &#123;</div><div class="line">                @Override</div><div class="line">                public void onClick(DialogInterface dialog, int which) &#123;</div><div class="line">                    AudioPlayer.getInstance().stop();</div><div class="line">                &#125;</div><div class="line">            &#125;)</div><div class="line">            .create().show();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>效果图<br><img src="/2017/04/09/AlarmManager详解/01.gif" alt="闹钟效果图">  </li>
-</ul>
-<blockquote>
-<p>我还在更新呢，先保存</p>
-</blockquote>
 
       
     </div>
@@ -400,6 +432,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/16/Android-Service总结/" rel="prev" title="Android Service总结">
+                Android Service总结 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -472,7 +508,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">18</span>
+              <span class="site-state-item-count">20</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -480,7 +516,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">17</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -518,7 +554,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#AlarmManager详解"><span class="nav-number">1.</span> <span class="nav-text">AlarmManager详解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要方法"><span class="nav-number">1.1.</span> <span class="nav-text">主要方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#set-int-type-long-triggerAtTime-PendingIntent-operation"><span class="nav-number">1.1.1.</span> <span class="nav-text">set(int type,long triggerAtTime,PendingIntent operation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setInexactRepeating-int-type-long-triggerAtTime-long-interval-PendingIntent-operation"><span class="nav-number">1.1.2.</span> <span class="nav-text">setInexactRepeating(int type,long triggerAtTime,long interval,PendingIntent operation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setRepeating-int-type-long-triggerAtTime-long-interval-PendingIntent-operation"><span class="nav-number">1.1.3.</span> <span class="nav-text">setRepeating(int type,long triggerAtTime,long interval,PendingIntent operation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cancel-PendingIntent-operation"><span class="nav-number">1.1.4.</span> <span class="nav-text">cancel(PendingIntent operation)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用AlarmManager做demo示例"><span class="nav-number">1.2.</span> <span class="nav-text">使用AlarmManager做demo示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#闹钟服务"><span class="nav-number">1.2.1.</span> <span class="nav-text">闹钟服务</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">1.</span> <span class="nav-text">参考链接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AlarmManager详解"><span class="nav-number">2.</span> <span class="nav-text">AlarmManager详解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#主要遇到一些问题"><span class="nav-number">2.1.</span> <span class="nav-text">主要遇到一些问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主要方法"><span class="nav-number">2.2.</span> <span class="nav-text">主要方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#set-int-type-long-triggerAtTime-PendingIntent-operation"><span class="nav-number">2.2.1.</span> <span class="nav-text">set(int type,long triggerAtTime,PendingIntent operation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setInexactRepeating-int-type-long-triggerAtTime-long-interval-PendingIntent-operation"><span class="nav-number">2.2.2.</span> <span class="nav-text">setInexactRepeating(int type,long triggerAtTime,long interval,PendingIntent operation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setRepeating-int-type-long-triggerAtTime-long-interval-PendingIntent-operation"><span class="nav-number">2.2.3.</span> <span class="nav-text">setRepeating(int type,long triggerAtTime,long interval,PendingIntent operation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cancel-PendingIntent-operation"><span class="nav-number">2.2.4.</span> <span class="nav-text">cancel(PendingIntent operation)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意"><span class="nav-number">2.2.5.</span> <span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用AlarmManager做demo示例"><span class="nav-number">2.3.</span> <span class="nav-text">使用AlarmManager做demo示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用AlarmManager"><span class="nav-number">2.3.1.</span> <span class="nav-text">使用AlarmManager</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闹钟服务"><span class="nav-number">2.3.2.</span> <span class="nav-text">闹钟服务</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
