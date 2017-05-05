@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="android,设计模式," />
+  <meta name="keywords" content="javascript闭包," />
 
 
 
@@ -84,23 +84,19 @@
 
 
 
-<meta name="description" content="参考链接《android-architecture》-googlesample
-mvp设计模式说明&amp;ensp;&amp;emsp;和传统的mvc不同的的是，原先controller的概念变为presenter，原意为“代理”的意思，mvp设计模式中，model和view的交互完全由Presenter进行代理，简单理解就是，View请求Model时，是先发送给Presenter，Presenter收到请求，">
+<meta name="description" content="参考链接javascript深入理解js闭包
+javascript之闭包(closure)说明&amp;emsp;&amp;emsp;闭包就是拥有许多变量和绑定这些变量环境的表达式，因此这些变量也是该表达式的一部分。&amp;emsp;&amp;emsp;这个解释估计会有许多人懵了不懂，我们暂且理解为，闭包是一个函数表达式，表达式绑定了一些变量的环境，然后看下面的代码。123456789function f1()&amp;#123;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计模式之mvp设计模式">
-<meta property="og:url" content="https://zengmianhui.github.io/2017/04/21/设计模式之mvp设计模式/index.html">
+<meta property="og:title" content="javascript之闭包(closure)">
+<meta property="og:url" content="https://zengmianhui.github.io/2017/05/05/javascript之闭包-closure/index.html">
 <meta property="og:site_name" content="zengmianhui's personal blog">
-<meta property="og:description" content="参考链接《android-architecture》-googlesample
-mvp设计模式说明&amp;ensp;&amp;emsp;和传统的mvc不同的的是，原先controller的概念变为presenter，原意为“代理”的意思，mvp设计模式中，model和view的交互完全由Presenter进行代理，简单理解就是，View请求Model时，是先发送给Presenter，Presenter收到请求，">
-<meta property="og:image" content="https://zengmianhui.github.io/2017/04/21/设计模式之mvp设计模式/1.jpg">
-<meta property="og:image" content="https://zengmianhui.github.io/2017/04/21/设计模式之mvp设计模式/2.jpg">
-<meta property="og:image" content="https://zengmianhui.github.io/2017/04/21/设计模式之mvp设计模式/3.jpg">
-<meta property="og:updated_time" content="2017-04-30T15:56:50.374Z">
+<meta property="og:description" content="参考链接javascript深入理解js闭包
+javascript之闭包(closure)说明&amp;emsp;&amp;emsp;闭包就是拥有许多变量和绑定这些变量环境的表达式，因此这些变量也是该表达式的一部分。&amp;emsp;&amp;emsp;这个解释估计会有许多人懵了不懂，我们暂且理解为，闭包是一个函数表达式，表达式绑定了一些变量的环境，然后看下面的代码。123456789function f1()&amp;#123;">
+<meta property="og:updated_time" content="2017-05-05T15:24:03.070Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="设计模式之mvp设计模式">
-<meta name="twitter:description" content="参考链接《android-architecture》-googlesample
-mvp设计模式说明&amp;ensp;&amp;emsp;和传统的mvc不同的的是，原先controller的概念变为presenter，原意为“代理”的意思，mvp设计模式中，model和view的交互完全由Presenter进行代理，简单理解就是，View请求Model时，是先发送给Presenter，Presenter收到请求，">
-<meta name="twitter:image" content="https://zengmianhui.github.io/2017/04/21/设计模式之mvp设计模式/1.jpg">
+<meta name="twitter:title" content="javascript之闭包(closure)">
+<meta name="twitter:description" content="参考链接javascript深入理解js闭包
+javascript之闭包(closure)说明&amp;emsp;&amp;emsp;闭包就是拥有许多变量和绑定这些变量环境的表达式，因此这些变量也是该表达式的一部分。&amp;emsp;&amp;emsp;这个解释估计会有许多人懵了不懂，我们暂且理解为，闭包是一个函数表达式，表达式绑定了一些变量的环境，然后看下面的代码。123456789function f1()&amp;#123;">
 
 
 
@@ -118,7 +114,7 @@ mvp设计模式说明&amp;ensp;&amp;emsp;和传统的mvc不同的的是，原先
   };
 </script>
 
-  <title> 设计模式之mvp设计模式 | zengmianhui's personal blog </title>
+  <title> javascript之闭包(closure) | zengmianhui's personal blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -258,7 +254,7 @@ mvp设计模式说明&amp;ensp;&amp;emsp;和传统的mvc不同的的是，原先
             
             
               
-                设计模式之mvp设计模式
+                javascript之闭包(closure)
               
             
           </h1>
@@ -270,8 +266,8 @@ mvp设计模式说明&amp;ensp;&amp;emsp;和传统的mvc不同的的是，原先
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-04-21T15:36:48+08:00" content="2017-04-21">
-              2017-04-21
+            <time itemprop="dateCreated" datetime="2017-05-05T23:22:24+08:00" content="2017-05-05">
+              2017-05-05
             </time>
           </span>
 
@@ -284,20 +280,8 @@ mvp设计模式说明&amp;ensp;&amp;emsp;和传统的mvc不同的的是，原先
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/android/" itemprop="url" rel="index">
-                    <span itemprop="name">android</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/android/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
                   </a>
                 </span>
 
@@ -316,7 +300,7 @@ mvp设计模式说明&amp;ensp;&amp;emsp;和传统的mvc不同的的是，原先
 
           
           
-             <span id="/2017/04/21/设计模式之mvp设计模式/" class="leancloud_visitors" data-flag-title="设计模式之mvp设计模式">
+             <span id="/2017/05/05/javascript之闭包-closure/" class="leancloud_visitors" data-flag-title="javascript之闭包(closure)">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -338,17 +322,24 @@ mvp设计模式说明&amp;ensp;&amp;emsp;和传统的mvc不同的的是，原先
       
 
       
-        <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="https://github.com/googlesamples/android-architecture/tree/todo-mvp/" target="_blank" rel="external">《android-architecture》-googlesample</a></p>
-<h1 id="mvp设计模式"><a href="#mvp设计模式" class="headerlink" title="mvp设计模式"></a>mvp设计模式</h1><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>&ensp;&emsp;和传统的mvc不同的的是，原先controller的概念变为presenter，原意为“代理”的意思，mvp设计模式中，model和view的交互完全由Presenter进行代理，简单理解就是，View请求Model时，是先发送给Presenter，Presenter收到请求，再发送请求给Model，Model响应数据回Presenter，Presenter再响应回View，此时完成交互。Model请求View也是差不多的过程。<br>&ensp;&emsp;mvp设计模式在Android最为常用。<br><a id="more"></a></p>
-<h2 id="传统MVC和MVP之间的图示比较"><a href="#传统MVC和MVP之间的图示比较" class="headerlink" title="传统MVC和MVP之间的图示比较"></a>传统MVC和MVP之间的图示比较</h2><p><img src="/2017/04/21/设计模式之mvp设计模式/1.jpg" alt="mvp设计模式图示"><br><img src="/2017/04/21/设计模式之mvp设计模式/2.jpg" alt="mvc设计模式图示"></p>
-<h2 id="google-mvp"><a href="#google-mvp" class="headerlink" title="google mvp"></a>google mvp</h2><p><img src="/2017/04/21/设计模式之mvp设计模式/3.jpg" alt="google todo-mvp">  </p>
-<h3 id="BasePresenter"><a href="#BasePresenter" class="headerlink" title="BasePresenter"></a>BasePresenter</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public interface BasePresenter &#123;</div><div class="line">    //可以用来初始化相关的数据</div><div class="line">    void start();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="BaseView"><a href="#BaseView" class="headerlink" title="BaseView"></a>BaseView</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public interface BaseView&lt;T&gt; &#123;</div><div class="line">    //view层可以引用Presenter</div><div class="line">    void setPresenter(T presenter);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="module"><a href="#module" class="headerlink" title="module"></a>module</h3><h4 id="contract"><a href="#contract" class="headerlink" title="contract"></a>contract</h4><pre><code>这个是根据具体模块，抽象更多功能的类
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public interface TasksContract &#123;</div><div class="line"></div><div class="line">    interface View extends BaseView&lt;Presenter&gt; &#123;</div><div class="line">//可以再设计更多抽象方法···············</div><div class="line">        void showTasks(List&lt;Task&gt; tasks);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    interface Presenter extends BasePresenter &#123;</div><div class="line">//可以再设计更多抽象方法···············</div><div class="line">        void loadTasks(boolean forceUpdate);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="View"><a href="#View" class="headerlink" title="View"></a>View</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public class TasksFragment extends Fragment implements TasksContract.View &#123;</div><div class="line">    private TasksContract.Presenter mPresenter;</div><div class="line">//其他方法略····················</div><div class="line">    @Override</div><div class="line">    public void showTasks(List&lt;Task&gt; tasks) &#123;</div><div class="line">        //Presenter向model获取数据后，将回调此方法，返回有数据的tasks给View层</div><div class="line">    &#125;</div><div class="line">    @Override</div><div class="line">    public void setPresenter(@NonNull TasksContract.Presenter presenter) &#123;</div><div class="line">    //Presenter实例化后回调TasksContract.View 中setPresenter()方法，从而View层也获取到Presenter的引用</div><div class="line">        mPresenter = checkNotNull(presenter);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="Presenter"><a href="#Presenter" class="headerlink" title="Presenter"></a>Presenter</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public class TasksPresenter implements TasksContract.Presenter &#123;</div><div class="line">//数据层data包中的封装类</div><div class="line">    private final TasksRepository mTasksRepository;</div><div class="line">//view层</div><div class="line">    private final TasksContract.View mTasksView;</div><div class="line"></div><div class="line">    public TasksPresenter(@NonNull TasksRepository tasksRepository, @NonNull TasksContract.View tasksView) &#123;</div><div class="line">        mTasksRepository = checkNotNull(tasksRepository, &quot;tasksRepository cannot be null&quot;);</div><div class="line">        mTasksView = checkNotNull(tasksView, &quot;tasksView cannot be null!&quot;);</div><div class="line">//使View层得到Presenter的引用</div><div class="line">        mTasksView.setPresenter(this);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h3><p>在Activity中初始化Presenter的实现类，即可完成MVP模式的分层,view层只做视图展示，model层负责查询数据，Presenter负责View和model的代理。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">// Create the presenter</div><div class="line">mTasksPresenter = new TasksPresenter(</div><div class="line">        Injection.provideTasksRepository(getApplicationContext()), tasksFragment);</div></pre></td></tr></table></figure></p>
+        <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="http://www.jb51.net/article/24101.htm" target="_blank" rel="external">javascript深入理解js闭包</a></p>
+<h1 id="javascript之闭包-closure"><a href="#javascript之闭包-closure" class="headerlink" title="javascript之闭包(closure)"></a>javascript之闭包(closure)</h1><h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>&emsp;&emsp;闭包就是拥有许多变量和绑定这些变量环境的表达式，因此这些变量也是该表达式的一部分。<br>&emsp;&emsp;这个解释估计会有许多人懵了不懂，我们暂且理解为，闭包是一个函数表达式，表达式绑定了一些变量的环境，然后看下面的代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function f1()&#123;</div><div class="line">    var n=999;</div><div class="line">    function f2()&#123;</div><div class="line">        console.log(n);</div><div class="line">    &#125;</div><div class="line">    return f2;//返回内部函数供外部调用。</div><div class="line">&#125;</div><div class="line">var result=f1();//创建函数表达式，result引用了f2函数，绑定变量n的环境。</div><div class="line">result();//输出999</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h2 id="变量的作用域"><a href="#变量的作用域" class="headerlink" title="变量的作用域"></a>变量的作用域</h2><p>&emsp;&emsp;javascript的变量分为两种，全局变量和局部变量，全局变量无法直接引用局部变量，局部变量可以直接引用全局变量，这就是作用域。闭包就是为了解决全局变量无法引用局部变量的问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">*直接引用全局变量</div><div class="line">*/</div><div class="line">var n=999;</div><div class="line">function f1()&#123;</div><div class="line">　alert(n);//引用全局变量</div><div class="line">&#125;</div><div class="line">f1(); // 999</div><div class="line">/**</div><div class="line">*无法直接引用局部变量</div><div class="line">*/</div><div class="line">function f2()&#123;</div><div class="line">　var abc=111;</div><div class="line">&#125;</div><div class="line">　alert(abc); // error</div></pre></td></tr></table></figure>
+<blockquote>
+<p>闭包获取局部变量</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function f1()&#123;</div><div class="line">    var n=999;</div><div class="line">    function f2()&#123;</div><div class="line">        console.log(n);</div><div class="line">    &#125;</div><div class="line">    return f2;//返回内部函数供外部调用。</div><div class="line">&#125;</div><div class="line">var result=f1();</div><div class="line">result();//输出999</div></pre></td></tr></table></figure>
+<h2 id="闭包需要注意的问题"><a href="#闭包需要注意的问题" class="headerlink" title="闭包需要注意的问题"></a>闭包需要注意的问题</h2><p>&emsp;&emsp;闭包会将局部变量长期驻留在内存中，很可能会造成内存泄漏。这和java的内存引用很相似，长生命周期的变量引用短生命周期的变量时，会促使垃圾回收器无法回收短生命周期的变量。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">function f1()&#123;</div><div class="line">　var n=999;</div><div class="line">　nAdd=function()&#123;n+=1&#125;//没有使用var修饰，实为申明全局变量。</div><div class="line">　function f2()&#123;</div><div class="line">　　　alert(n);</div><div class="line">　&#125;</div><div class="line">　return f2;</div><div class="line">&#125;</div><div class="line">var result=f1();</div><div class="line">result(); // 999</div><div class="line">nAdd();</div><div class="line">result(); // 1000，再次调用也可以获取到增后n的值，所以n没有被回收</div></pre></td></tr></table></figure></p>
+<h2 id="我们可以这么玩"><a href="#我们可以这么玩" class="headerlink" title="我们可以这么玩"></a>我们可以这么玩</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">function f1()&#123;</div><div class="line">    var n=0;</div><div class="line">    function f2()&#123;</div><div class="line">        n++;</div><div class="line">        function f3()&#123;</div><div class="line">            n++;</div><div class="line">            function f4()&#123;</div><div class="line">                n++;</div><div class="line">                console.log(n);</div><div class="line">            &#125;</div><div class="line">            return f4;</div><div class="line">        &#125;</div><div class="line">        return f3;</div><div class="line">    &#125;</div><div class="line">    return f2;</div><div class="line">&#125;</div><div class="line">//第一种调用方式</div><div class="line">f1()()()();// 输出 3</div><div class="line">//第二种调用方式</div><div class="line">var result=f1()()();</div><div class="line">result();//输出 3</div></pre></td></tr></table></figure>
+<blockquote>
+<p>多连括号方式调用，即为将父函数返回的子函数立即调用。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">(function()&#123;</div><div class="line">    var n=0;</div><div class="line">    console.log(n);</div><div class="line">&#125;)();//输出 0</div><div class="line">//也可以带有函数名</div><div class="line">(function f1()&#123;</div><div class="line">    var n=0;</div><div class="line">    console.log(n);</div><div class="line">&#125;)();//输出 0</div></pre></td></tr></table></figure>
+<blockquote>
+<p>这个叫做 申明函数并立即执行。</p>
+</blockquote>
 
       
     </div>
@@ -370,9 +361,7 @@ mvp设计模式说明&amp;ensp;&amp;emsp;和传统的mvc不同的的是，原先
       
         <div class="post-tags">
           
-            <a href="/tags/android/" rel="tag">#android</a>
-          
-            <a href="/tags/设计模式/" rel="tag">#设计模式</a>
+            <a href="/tags/javascript闭包/" rel="tag">#javascript闭包</a>
           
         </div>
       
@@ -381,17 +370,13 @@ mvp设计模式说明&amp;ensp;&amp;emsp;和传统的mvc不同的的是，原先
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/21/正则表达式之环视-lookaround/" rel="next" title="正则表达式之环视(lookaround)">
-                <i class="fa fa-chevron-left"></i> 正则表达式之环视(lookaround)
+              <a href="/2017/05/02/hexo从多说评论转为韩国来必力评论/" rel="next" title="hexo从多说评论转为韩国来必力评论">
+                <i class="fa fa-chevron-left"></i> hexo从多说评论转为韩国来必力评论
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/30/Android中传递对象的三种方法/" rel="prev" title="Android中传递对象的三种方法">
-                Android中传递对象的三种方法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -509,7 +494,7 @@ mvp设计模式说明&amp;ensp;&amp;emsp;和传统的mvc不同的的是，原先
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">1.</span> <span class="nav-text">参考链接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mvp设计模式"><span class="nav-number">2.</span> <span class="nav-text">mvp设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">2.1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#传统MVC和MVP之间的图示比较"><span class="nav-number">2.2.</span> <span class="nav-text">传统MVC和MVP之间的图示比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#google-mvp"><span class="nav-number">2.3.</span> <span class="nav-text">google mvp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BasePresenter"><span class="nav-number">2.3.1.</span> <span class="nav-text">BasePresenter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BaseView"><span class="nav-number">2.3.2.</span> <span class="nav-text">BaseView</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#module"><span class="nav-number">2.3.3.</span> <span class="nav-text">module</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#contract"><span class="nav-number">2.3.3.1.</span> <span class="nav-text">contract</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#View"><span class="nav-number">2.3.3.2.</span> <span class="nav-text">View</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Presenter"><span class="nav-number">2.3.3.3.</span> <span class="nav-text">Presenter</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Activity"><span class="nav-number">2.3.4.</span> <span class="nav-text">Activity</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">1.</span> <span class="nav-text">参考链接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#javascript之闭包-closure"><span class="nav-number">2.</span> <span class="nav-text">javascript之闭包(closure)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">2.1.</span> <span class="nav-text">说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量的作用域"><span class="nav-number">2.2.</span> <span class="nav-text">变量的作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#闭包需要注意的问题"><span class="nav-number">2.3.</span> <span class="nav-text">闭包需要注意的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#我们可以这么玩"><span class="nav-number">2.4.</span> <span class="nav-text">我们可以这么玩</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
