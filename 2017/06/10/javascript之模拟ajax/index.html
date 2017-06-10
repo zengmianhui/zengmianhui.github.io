@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="个人主页," />
+  <meta name="keywords" content="javascript ajax," />
 
 
 
@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="摘要：    hexo如何更换github博客主题">
+<meta name="description" content="javascript之模拟ajax原javascript的异步请求方法很多人可能一直用jquery封装好的ajax异步请求，可能不知道原生javascript是怎么异步请求的，javascript是用XMLHttpRequest来创建异步对象的，以下是简单的请求方法。12345678910111213  var ajax = new XMLHttpRequest();  ajax.open(&amp;ap">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo如何更换github博客主题">
-<meta property="og:url" content="https://zengmianhui.github.io/2017/01/28/hexo如何更换github博客主题/index.html">
+<meta property="og:title" content="javascript之模拟ajax">
+<meta property="og:url" content="https://zengmianhui.github.io/2017/06/10/javascript之模拟ajax/index.html">
 <meta property="og:site_name" content="zengmianhui's personal blog">
-<meta property="og:description" content="摘要：    hexo如何更换github博客主题">
-<meta property="og:updated_time" content="2017-05-02T05:47:42.332Z">
+<meta property="og:description" content="javascript之模拟ajax原javascript的异步请求方法很多人可能一直用jquery封装好的ajax异步请求，可能不知道原生javascript是怎么异步请求的，javascript是用XMLHttpRequest来创建异步对象的，以下是简单的请求方法。12345678910111213  var ajax = new XMLHttpRequest();  ajax.open(&amp;ap">
+<meta property="og:updated_time" content="2017-06-10T15:11:09.541Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo如何更换github博客主题">
-<meta name="twitter:description" content="摘要：    hexo如何更换github博客主题">
+<meta name="twitter:title" content="javascript之模拟ajax">
+<meta name="twitter:description" content="javascript之模拟ajax原javascript的异步请求方法很多人可能一直用jquery封装好的ajax异步请求，可能不知道原生javascript是怎么异步请求的，javascript是用XMLHttpRequest来创建异步对象的，以下是简单的请求方法。12345678910111213  var ajax = new XMLHttpRequest();  ajax.open(&amp;ap">
 
 
 
@@ -111,7 +111,7 @@
   };
 </script>
 
-  <title> hexo如何更换github博客主题 | zengmianhui's personal blog </title>
+  <title> javascript之模拟ajax | zengmianhui's personal blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -251,7 +251,7 @@
             
             
               
-                hexo如何更换github博客主题
+                javascript之模拟ajax
               
             
           </h1>
@@ -263,8 +263,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-01-28T01:33:40+08:00" content="2017-01-28">
-              2017-01-28
+            <time itemprop="dateCreated" datetime="2017-06-10T23:09:22+08:00" content="2017-06-10">
+              2017-06-10
             </time>
           </span>
 
@@ -277,8 +277,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/" itemprop="url" rel="index">
-                    <span itemprop="name">git</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
                   </a>
                 </span>
 
@@ -289,8 +289,8 @@
 
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/git/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo</span>
+                  <a href="/categories/javascript/ajax/" itemprop="url" rel="index">
+                    <span itemprop="name">ajax</span>
                   </a>
                 </span>
 
@@ -309,7 +309,7 @@
 
           
           
-             <span id="/2017/01/28/hexo如何更换github博客主题/" class="leancloud_visitors" data-flag-title="hexo如何更换github博客主题">
+             <span id="/2017/06/10/javascript之模拟ajax/" class="leancloud_visitors" data-flag-title="javascript之模拟ajax">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -331,12 +331,17 @@
       
 
       
-        <p>摘要：<br>    hexo如何更换github博客主题<br><a id="more"></a><br>正文：<br>    [TOC]</p>
-<h1 id="hexo更换github博客主题"><a href="#hexo更换github博客主题" class="headerlink" title="hexo更换github博客主题"></a>hexo更换github博客主题</h1><p><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">next主题官网</a><br>首先当然是下载主题，可以直接使用命令的形式，用git clone下来，也可以直接下载压缩包，然后解压在站点目录下的theme目录下。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd your-hexo-site</div><div class="line">$ git clone https://github.com/iissnan/hexo-theme-next themes/next</div></pre></td></tr></table></figure>
-<p>编辑站点文件_config.yml</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">theme: next</div></pre></td></tr></table></figure>
-<p>这样子就可以了,启动hexo站点，直接验证主题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s --debug</div></pre></td></tr></table></figure></p>
+        <h1 id="javascript之模拟ajax"><a href="#javascript之模拟ajax" class="headerlink" title="javascript之模拟ajax"></a>javascript之模拟ajax</h1><h2 id="原javascript的异步请求方法"><a href="#原javascript的异步请求方法" class="headerlink" title="原javascript的异步请求方法"></a>原javascript的异步请求方法</h2><p>很多人可能一直用jquery封装好的ajax异步请求，可能不知道原生javascript是怎么异步请求的，javascript是用<code>XMLHttpRequest</code>来创建异步对象的，以下是简单的请求方法。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">  var ajax = new XMLHttpRequest();</div><div class="line">  ajax.open(&apos;post&apos;,&apos;http://www.baidu.com&apos;);</div><div class="line">  //因为是post请求所以必须加上setRequestHeader(get请求可以忽略)</div><div class="line">  ajax.setRequestHeader(&apos;Content-type&apos;,&apos;text/plain;charset=UTF-8&apos;);</div><div class="line">  //请求所带的参数</div><div class="line">  ajax.send(&quot;username=123456&quot;);</div><div class="line">  //绑定onreadystatechange事件</div><div class="line">  ajax.onreadystatechange=function()&#123;</div><div class="line">  //判断如果请求的状态是否成功</div><div class="line">  	if (ajax.readyState==4&amp;&amp;ajax.status==200) &#123;</div><div class="line">  		    console.log(&quot;请求的结果是&quot;+ajax.responseText);</div><div class="line">&#125;</div><div class="line">  &#125;;</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h2 id="简单封装，便于理解"><a href="#简单封装，便于理解" class="headerlink" title="简单封装，便于理解"></a>简单封装，便于理解</h2><p>当然是我没有看到jquery是如何写的ajax，只是在自己理解范围写了这个ajax。</p>
+<blockquote>
+<p>ajax.js</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div></pre></td><td class="code"><pre><div class="line">//requestParameter为一个JSON对象</div><div class="line">var ajax=function(requestParameter)&#123;</div><div class="line">	var requestObj = new XMLHttpRequest();</div><div class="line">	var requestMethod=requestParameter.type.toLowerCase();</div><div class="line">		switch(requestMethod)&#123;</div><div class="line">			case &quot;get&quot;:</div><div class="line">				break;</div><div class="line">			case &quot;post&quot;:</div><div class="line">				break;</div><div class="line">			case &quot;options&quot;:</div><div class="line">				break;</div><div class="line">			case &quot;head&quot;:</div><div class="line">				break;</div><div class="line">			case &quot;put&quot;:</div><div class="line">				break;</div><div class="line">			case &quot;detele&quot;:</div><div class="line">				break;</div><div class="line">			case &quot;trace&quot;:</div><div class="line">				break;</div><div class="line">			default:</div><div class="line">				throw(&quot;ajax:type don&apos;t null&quot;);</div><div class="line">				break;</div><div class="line"></div><div class="line">		&#125;</div><div class="line">	//	请求地址及请求方法设置</div><div class="line">	if (requestParameter.url) &#123;</div><div class="line">		requestObj.open(requestMethod,requestParameter.url);	</div><div class="line">	&#125;else&#123;</div><div class="line">		throw(&quot;ajax:url don&apos;t null&quot;);</div><div class="line">	&#125;</div><div class="line">	//请求头</div><div class="line">	if (requestParameter.head) &#123;</div><div class="line">		requestObj.setRequestHeader(&apos;Content-type&apos;,requestParameter.head);</div><div class="line">	&#125;</div><div class="line">	//请求参数，data为一个JSON对象并发送</div><div class="line">	if (requestParameter.data) &#123;</div><div class="line">		var dataParameter=&quot;&quot;;</div><div class="line">		for(var o in requestParameter.data)&#123;</div><div class="line">			dataParameter+=o+&quot;=&quot;+requestParameter.data[o]+&quot;&amp;&quot;</div><div class="line">		&#125;</div><div class="line">		dataParameter=dataParameter.substring(0,dataParameter.length-1)</div><div class="line">		requestObj.send(dataParameter);</div><div class="line">	&#125;</div><div class="line">	//结果返回</div><div class="line">	requestObj.onreadystatechange=function()&#123;</div><div class="line">		var result=&#123;</div><div class="line">			status:requestObj.status,</div><div class="line">			result:requestObj.responseText</div><div class="line">		&#125;;</div><div class="line">		if (requestObj.readyState==4&amp;&amp;requestObj.status==200&amp;&amp;requestParameter.success) &#123;</div><div class="line">			 requestParameter.success(result);</div><div class="line">		&#125;else if (requestObj.readyState==4&amp;&amp;requestParameter.error) &#123;</div><div class="line">			requestParameter.error(result);</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	return requestObj;</div><div class="line">	</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h2 id="简单调用"><a href="#简单调用" class="headerlink" title="简单调用"></a>简单调用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">&lt;head&gt;</div><div class="line">	&lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">	&lt;title&gt;测试&lt;/title&gt;	</div><div class="line">	&lt;script src=&quot;ajax.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;/head&gt;</div><div class="line">&lt;body&gt;</div><div class="line">    &lt;!-- login(&apos;abc&apos;,&apos;123456&apos;) --&gt;</div><div class="line">    &lt;input type=&quot;submit&quot; value=&quot;登录&quot; onclick=&quot;testLogin()&quot;/&gt;&lt;br&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">//登录</div><div class="line">function testLogin(username,pass)&#123;</div><div class="line">    ajax(&#123;</div><div class="line">    	url:&quot;http://www.yunplc.com:7080/exlog&quot;,</div><div class="line">    	type:&quot;post&quot;,</div><div class="line">    	data:&#123;</div><div class="line">    		username:username,</div><div class="line">    		pass:pass</div><div class="line">    	&#125;,</div><div class="line">    	success:function(obj)&#123;</div><div class="line">    		console.log(&quot;index: 成功了，状态代码是&quot;+obj.status+&quot;返回结果&quot;+obj.result);</div><div class="line">    	&#125;,</div><div class="line">    	error:function(obj)&#123;</div><div class="line">    		console.log(&quot;index: 失败了，状态代码是&quot;+obj.status+&quot;返回结果&quot;+obj.result);</div><div class="line">    	&#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div><div class="line">&lt;/script&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>如果有觉得写不好，请在下方评论一起讨论</p>
+</blockquote>
 
       
     </div>
@@ -358,7 +363,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/个人主页/" rel="tag">#个人主页</a>
+            <a href="/tags/javascript-ajax/" rel="tag">#javascript ajax</a>
           
         </div>
       
@@ -367,17 +372,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/27/android-studio配置git/" rel="next" title="android studio配置git">
-                <i class="fa fa-chevron-left"></i> android studio配置git
+              <a href="/2017/05/11/TCP协议中的三次握手和四次挥手/" rel="next" title="TCP协议中的三次握手和四次挥手">
+                <i class="fa fa-chevron-left"></i> TCP协议中的三次握手和四次挥手
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/01/28/github博客没有category和tags？/" rel="prev" title="github博客没有category和tags？">
-                github博客没有category和tags？ <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -495,7 +496,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#hexo更换github博客主题"><span class="nav-number">1.</span> <span class="nav-text">hexo更换github博客主题</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#javascript之模拟ajax"><span class="nav-number">1.</span> <span class="nav-text">javascript之模拟ajax</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原javascript的异步请求方法"><span class="nav-number">1.1.</span> <span class="nav-text">原javascript的异步请求方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单封装，便于理解"><span class="nav-number">1.2.</span> <span class="nav-text">简单封装，便于理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单调用"><span class="nav-number">1.3.</span> <span class="nav-text">简单调用</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
