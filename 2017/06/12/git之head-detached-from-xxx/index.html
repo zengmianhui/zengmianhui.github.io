@@ -95,7 +95,7 @@ git之head detached from [xxx]头部从某提交分离？近期发">
 <meta property="og:image" content="https://zengmianhui.github.io/2017/06/12/git之head-detached-from-xxx/2017-06-12_154037.png">
 <meta property="og:image" content="https://zengmianhui.github.io/2017/06/12/git之head-detached-from-xxx/2017-06-12_162203.png">
 <meta property="og:image" content="https://zengmianhui.github.io/2017/06/12/git之head-detached-from-xxx/2017-06-12_183817.png">
-<meta property="og:updated_time" content="2017-06-12T14:22:59.536Z">
+<meta property="og:updated_time" content="2017-06-12T14:25:10.050Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git之head detached from [xxx]">
 <meta name="twitter:description" content="参考链接《git detached from head》————夜空霓虹《git checkout 命令详解》————胡涛儿《git问题记录–如何从从detached HEAD状态解救出来》————馒头MT《git cherry-pick. 如何把已经提交的commit, 从一个分支放到另一个分支》————sg552
@@ -375,7 +375,8 @@ git之head detached from [xxx]头部从某提交分离？近期发">
 </blockquote>
 <h3 id="切换到master分支，将temp合并到master分支"><a href="#切换到master分支，将temp合并到master分支" class="headerlink" title="切换到master分支，将temp合并到master分支"></a>切换到master分支，将temp合并到master分支</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">git checkout master</div><div class="line"></div><div class="line">git merge temp #使用此命令可能也会有冲突</div><div class="line">```  </div><div class="line"></div><div class="line">![发生冲突](git之head detached from [xxx]/2017-06-12_181756.png)  </div><div class="line"></div><div class="line">&gt; 发生冲突后，进入了MERGING模式，跟上面的方法一样进入对应文件，修改即可  </div><div class="line"></div><div class="line">![修改文件内容，保存最新分支信息](git之head detached from [xxx]/2017-06-12_181946.png)  </div><div class="line">![两次提交我们的修改](git之head detached from [xxx]/2017-06-12_182814.png)</div></pre></td></tr></table></figure>
 <p>git merge temp</p>
-<h1 id="然后你就可以用log打印一下master的提交信息了"><a href="#然后你就可以用log打印一下master的提交信息了" class="headerlink" title="然后你就可以用log打印一下master的提交信息了"></a>然后你就可以用log打印一下master的提交信息了</h1><p>git log<br>```</p>
+<p>#然后你就可以用log打印一下master的提交信息了<br>git log</p>
+<p>```</p>
 
       
     </div>
@@ -530,7 +531,7 @@ git之head detached from [xxx]头部从某提交分离？近期发">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">1.</span> <span class="nav-text">参考链接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git之head-detached-from-xxx"><span class="nav-number">2.</span> <span class="nav-text">git之head detached from [xxx]</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#头部从某提交分离？"><span class="nav-number">2.1.</span> <span class="nav-text">头部从某提交分离？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过合并分支来解决"><span class="nav-number">2.2.</span> <span class="nav-text">通过合并分支来解决</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建临时分支"><span class="nav-number">2.2.1.</span> <span class="nav-text">创建临时分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将其他detach的一起合并到temp"><span class="nav-number">2.2.2.</span> <span class="nav-text">将其他detach的一起合并到temp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切换到master分支，将temp合并到master分支"><span class="nav-number">2.2.3.</span> <span class="nav-text">切换到master分支，将temp合并到master分支</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#然后你就可以用log打印一下master的提交信息了"><span class="nav-number">3.</span> <span class="nav-text">然后你就可以用log打印一下master的提交信息了</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">1.</span> <span class="nav-text">参考链接</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#git之head-detached-from-xxx"><span class="nav-number">2.</span> <span class="nav-text">git之head detached from [xxx]</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#头部从某提交分离？"><span class="nav-number">2.1.</span> <span class="nav-text">头部从某提交分离？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过合并分支来解决"><span class="nav-number">2.2.</span> <span class="nav-text">通过合并分支来解决</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建临时分支"><span class="nav-number">2.2.1.</span> <span class="nav-text">创建临时分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将其他detach的一起合并到temp"><span class="nav-number">2.2.2.</span> <span class="nav-text">将其他detach的一起合并到temp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切换到master分支，将temp合并到master分支"><span class="nav-number">2.2.3.</span> <span class="nav-text">切换到master分支，将temp合并到master分支</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
