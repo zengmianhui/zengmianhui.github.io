@@ -253,6 +253,152 @@
             
               
                 
+                <a class="post-title-link" href="/2017/04/09/AlarmManager详解/" itemprop="url">
+                  AlarmManager详解
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-09T21:48:25+08:00" content="2017-04-09">
+              2017-04-09
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/android/android各种manager/" itemprop="url" rel="index">
+                    <span itemprop="name">android各种manager</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/04/09/AlarmManager详解/" class="leancloud_visitors" data-flag-title="AlarmManager详解">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="http://www.jianshu.com/p/1f919c6eeff6">Android闹钟设置的解决方案——HanWen</a>  </p>
+<p><a href="http://www.oschina.net/question/261246_140677">Android AlarmManager 定时会 “失效” 的问题——开源中国社区的问答</a> </p>
+<p><a href="http://www.cnblogs.com/dixonyy/p/5163880.html">保证Android后台不被杀死的几种方法——不吃早饭好不好</a>  </p>
+<p><a href="http://www.myexception.cn/android/917358.html">Android中运用AlarmManager需注意设置进程属性——choujs</a>  </p>
+<p><a href="https://zhidao.baidu.com/question/1178427619022141179.html">AlarmManager 怎样在进程被干掉的情况下触发回调——百度知道</a></p>
+<h1 id="AlarmManager详解"><a href="#AlarmManager详解" class="headerlink" title="AlarmManager详解"></a>AlarmManager详解</h1><p>AlarmManager通常用途是用来开发手机闹钟，但是AlarmManager的用处并只是这个。AlarmManager其实是一个全局定时器，它可以在指定时间或指定周期启动其他组件（<code>Activity</code>、<code>Service</code>、<code>BroadcastReceiver</code>）</p>
+<h2 id="主要遇到一些问题"><a href="#主要遇到一些问题" class="headerlink" title="主要遇到一些问题"></a>主要遇到一些问题</h2><ul>
+<li>华为手机上kill应用后，无法唤醒Alarm<br>  参考了一些社区问答，大部分原因都是手机为Alarm设置了<strong>统一的唤醒时间</strong></li>
+<li>不能精确启动闹钟服务<br>  API19以上是无法精确时间的，可以调用<code>setExact()</code>和<code>setWindow()</code></li>
+<li>华为手机上休眠无法启动闹钟服务</li>
+</ul>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/04/09/AlarmManager详解/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/04/08/broadcast与broadcast-receiver/" itemprop="url">
                   broadcast与broadcast receiver
                 </a>
@@ -1274,142 +1420,6 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/08/android-Material-Design-底部导航栏/" itemprop="url">
-                  android Material Design 底部导航栏
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-08T03:22:38+08:00" content="2017-02-08">
-              2017-02-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/android/" itemprop="url" rel="index">
-                    <span itemprop="name">android</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/android/Material-Design/" itemprop="url" rel="index">
-                    <span itemprop="name">Material Design</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-             <span id="/2017/02/08/android-Material-Design-底部导航栏/" class="leancloud_visitors" data-flag-title="android Material Design 底部导航栏">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="android-Material-Design-底部导航栏"><a href="#android-Material-Design-底部导航栏" class="headerlink" title="android Material Design 底部导航栏"></a>android Material Design 底部导航栏</h1><h2 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h2><p><img src="http://img.blog.csdn.net/20170208030222983?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/02/08/android-Material-Design-底部导航栏/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2017/02/08/android-Material-Design-底部导航栏.autosave/" itemprop="url">
                   android Material Design 底部导航栏
                 </a>
@@ -1546,8 +1556,8 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/06/运行我的第一个python程序/" itemprop="url">
-                  运行我的第一个python程序
+                <a class="post-title-link" href="/2017/02/08/android-Material-Design-底部导航栏/" itemprop="url">
+                  android Material Design 底部导航栏
                 </a>
               
             
@@ -1560,8 +1570,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-06T00:31:20+08:00" content="2017-02-06">
-              2017-02-06
+            <time itemprop="dateCreated" datetime="2017-02-08T03:22:38+08:00" content="2017-02-08">
+              2017-02-08
             </time>
           </span>
 
@@ -1574,8 +1584,20 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/python/" itemprop="url" rel="index">
-                    <span itemprop="name">python</span>
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/android/Material-Design/" itemprop="url" rel="index">
+                    <span itemprop="name">Material Design</span>
                   </a>
                 </span>
 
@@ -1594,7 +1616,7 @@
 
           
           
-             <span id="/2017/02/06/运行我的第一个python程序/" class="leancloud_visitors" data-flag-title="运行我的第一个python程序">
+             <span id="/2017/02/08/android-Material-Design-底部导航栏/" class="leancloud_visitors" data-flag-title="android Material Design 底部导航栏">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -1617,9 +1639,9 @@
 
       
         
-          <h1 id="运行我的第一个python程序"><a href="#运行我的第一个python程序" class="headerlink" title="运行我的第一个python程序"></a>运行我的第一个python程序</h1><h2 id="python简介（python是一门跨平台的编程语言）"><a href="#python简介（python是一门跨平台的编程语言）" class="headerlink" title="python简介（python是一门跨平台的编程语言）"></a>python简介（python是一门跨平台的编程语言）</h2><p>创始人Guido van Rossum<br>创始人是Guido van Rossum荷兰人，google工程师，1989年圣诞节，龟叔为了打发无聊的圣诞节所开发的python语言。<br></p>
+          <h1 id="android-Material-Design-底部导航栏"><a href="#android-Material-Design-底部导航栏" class="headerlink" title="android Material Design 底部导航栏"></a>android Material Design 底部导航栏</h1><h2 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h2><p><img src="http://img.blog.csdn.net/20170208030222983?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br></p>
           <div class="post-more-link text-center">
-            <a class="btn" href="/2017/02/06/运行我的第一个python程序/#more" rel="contents">
+            <a class="btn" href="/2017/02/08/android-Material-Design-底部导航栏/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1695,7 +1717,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">38</span>
+              <span class="site-state-item-count">39</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1703,7 +1725,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">38</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1712,7 +1734,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">32</span>
+                <span class="site-state-item-count">33</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
