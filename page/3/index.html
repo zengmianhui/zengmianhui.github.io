@@ -253,6 +253,162 @@
             
               
                 
+                <a class="post-title-link" href="/2017/04/16/Android-Service总结/" itemprop="url">
+                  Android Service总结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-04-16T16:49:13+08:00" content="2017-04-16">
+              2017-04-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/android/四大组件/" itemprop="url" rel="index">
+                    <span itemprop="name">四大组件</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/android/四大组件/service/" itemprop="url" rel="index">
+                    <span itemprop="name">service</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/04/16/Android-Service总结/" class="leancloud_visitors" data-flag-title="Android Service总结">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p><a href="http://mouxuejie.com/blog/2016-04-16/service-intentservice-analysis/">Service知识总结——某学姐</a></p>
+<h1 id="Service"><a href="#Service" class="headerlink" title="Service"></a>Service</h1><h2 id="service生命周期"><a href="#service生命周期" class="headerlink" title="service生命周期"></a>service生命周期</h2><p>service有两个生命周期，为什么会有两个生命周期呢，这是根据service的启动方式来进行区分的。</p>
+<ul>
+<li><code>Context.startService()</code><br>  通过该方法启动service，访问者与service之间没有关联，即使访问者退出了，service也仍然运行。以下是打印结果</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">com.app.demoservice I/MyService: onCreate: 开始创建Service</div><div class="line">com.app.demoservice I/MyService: onStartCommand: 每次调用startService()方法时，都会回调这个方法</div></pre></td></tr></table></figure>
+<ul>
+<li><code>Context.bindService(Intent service,ServiceConnection conn,int flags)</code><br>  使用该方法启动的service,访问者与service绑定在一起，访问者退出，service也就终止了。<br><img src="/2017/04/16/Android-Service总结/1.jpg" alt="Android Service的两种生命周期">  </li>
+</ul>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/04/16/Android-Service总结/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/04/09/AlarmManager详解/" itemprop="url">
                   AlarmManager详解
                 </a>
@@ -1420,142 +1576,6 @@
             
               
                 
-                <a class="post-title-link" href="/2017/02/08/android-Material-Design-底部导航栏.autosave/" itemprop="url">
-                  android Material Design 底部导航栏
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-02-08T03:22:38+08:00" content="2017-02-08">
-              2017-02-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/android/" itemprop="url" rel="index">
-                    <span itemprop="name">android</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/android/Material-Design/" itemprop="url" rel="index">
-                    <span itemprop="name">Material Design</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-             <span id="/2017/02/08/android-Material-Design-底部导航栏.autosave/" class="leancloud_visitors" data-flag-title="android Material Design 底部导航栏">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="android-Material-Design-底部导航栏"><a href="#android-Material-Design-底部导航栏" class="headerlink" title="android Material Design 底部导航栏"></a>android Material Design 底部导航栏</h1><h2 id="实现效果"><a href="#实现效果" class="headerlink" title="实现效果"></a>实现效果</h2><p><img src="http://img.blog.csdn.net/20170208030222983?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvYTEyNzQ2MjQ5OTQ=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2017/02/08/android-Material-Design-底部导航栏.autosave/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2017/02/08/android-Material-Design-底部导航栏/" itemprop="url">
                   android Material Design 底部导航栏
                 </a>
@@ -1717,7 +1737,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-count">40</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1725,7 +1745,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-count">39</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1734,7 +1754,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
