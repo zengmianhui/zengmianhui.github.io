@@ -115,7 +115,12 @@ Javascript之AMD模块化规范说明&amp;emsp;&amp;emsp;现今通行的模块�
 </script>
 
   <title> Javascript之AMD模块化规范 | Mr.zeng's personal blog </title>
-
+  <!-- 强制使用https访问 -->
+  <script type="text/javascript">
+    var host = "iszengmh.github.io";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+        window.location.protocol = "https";
+</script>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -765,12 +770,5 @@ Javascript之AMD模块化规范说明&amp;emsp;&amp;emsp;现今通行的模块�
   
 
 </body>
-  <!-- 强制使用https访问 -->
-  <script type="text/javascript">
-    (function() {
-    var host = "iszengmh.github.io";
-    if ((host == window.location.host) && (window.location.protocol != "https:"))
-        window.location.protocol = "https";
-    })(); 
-</script>
+
 </html>
