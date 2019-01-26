@@ -10,14 +10,11 @@ cache:
     directories:
         - node_modules    
 before_install:
-  - npm install -g hexo
   - npm install -g hexo-cli
 #安装hexo及插件
 install:
   - npm install   
-before_script:
-  - npm install -g mocha
-  - git clone --branch master https://github.com/iszengmh/iszengmh.github.io.git public
+  - npm install hexo-deployer-git --save
 script:
   - hexo clean
   - hexo generate
