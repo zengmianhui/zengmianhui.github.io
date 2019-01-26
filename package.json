@@ -24,7 +24,7 @@
     "repo": "blog",
     "mdNameFormat": "title",
     "postPath": "source/_posts/yuque"
-  }
+  },
   "scripts": {
     "clean": "hexo clean",
     "clean:yuque": "DEBUG=yuque-hexo.* yuque-hexo clean",
