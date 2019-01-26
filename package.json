@@ -21,7 +21,7 @@
   "yuqueConfig": {
     "baseUrl": "https://www.yuque.com/api/v2",
     "login": "iszengmh",
-    "repo": "blog",
+    "repo": "personalblog",
     "mdNameFormat": "title",
     "postPath": "source/_posts/yuque"
   },
