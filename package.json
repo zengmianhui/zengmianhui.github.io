@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "hexo": {
-    "version": "3.8.0"
+    "version": "3.2.2"
   },
   "dependencies": {
     "hexo": "^3.7.1",
@@ -33,5 +33,8 @@
     "dev": "hexo s",
     "sync": "DEBUG=yuque-hexo.* yuque-hexo sync",
     "reset": "npm run clean:yuque && npm run sync"
+  },
+  "devDependencies": {
+    "yuque-hexo": "^1.6.0"
   }
 }
