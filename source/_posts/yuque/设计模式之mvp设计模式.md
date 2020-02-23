@@ -12,8 +12,6 @@ categories: 设计模式
 ---
 
 
-<a name="ea6f3b87"></a>
-# 参考链接
 <a name="MnP5e"></a>
 # 参考链接
 
@@ -30,14 +28,13 @@ categories: 设计模式
 <a name="58f3538c"></a>
 ## 传统MVC和MVP之间的图示比较
 
-![图片.png](https://cdn.nlark.com/yuque/0/2019/png/244275/1560593554660-b181f163-839a-46c0-83e0-536e45f829de.png#align=left&display=inline&height=305&name=%E5%9B%BE%E7%89%87.png&originHeight=305&originWidth=612&size=85572&status=done&width=612)
+![图片.png](https://cdn.nlark.com/yuque/0/2019/png/244275/1560609538338-a7b7ddad-8142-4f3f-a6de-a42e9ca574ed.png#align=left&display=inline&height=305&name=%E5%9B%BE%E7%89%87.png&originHeight=305&originWidth=612&size=66298&status=done&width=612)<br />![图片.png](https://cdn.nlark.com/yuque/0/2019/png/244275/1560609522736-9af018f0-8023-4170-b0a7-d00f9dac3c25.png#align=left&display=inline&height=189&name=%E5%9B%BE%E7%89%87.png&originHeight=189&originWidth=663&size=46261&status=done&width=663)
 
-![图片.png](https://cdn.nlark.com/yuque/0/2019/png/244275/1560593560943-ae9636cb-3452-4a4f-ba70-41c2c60bea63.png#align=left&display=inline&height=189&name=%E5%9B%BE%E7%89%87.png&originHeight=189&originWidth=663&size=55824&status=done&width=663)<br /><!--more-->
+<!--more-->
 <a name="a8ea117a"></a>
 ## google mvp
 
-![图片.png](https://cdn.nlark.com/yuque/0/2019/png/244275/1560593660939-242397ee-9ab1-46cc-b4ca-1ec9a2fc134e.png#align=left&display=inline&height=374&name=%E5%9B%BE%E7%89%87.png&originHeight=374&originWidth=552&size=233997&status=done&width=552)
-
+![图片.png](https://cdn.nlark.com/yuque/0/2019/png/244275/1560609574407-ea399c51-ce34-4da6-89f4-e33617c0b6e7.png#align=left&display=inline&height=374&name=%E5%9B%BE%E7%89%87.png&originHeight=374&originWidth=552&size=224865&status=done&width=552)
 <a name="BasePresenter"></a>
 ### BasePresenter
 

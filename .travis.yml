@@ -1,17 +1,17 @@
- #ÉèÖÃÓïÑÔ
+ #è®¾ç½®è¯­è¨€
 language: node_js  
-# Ö¸¶¨ĞèÒªsudoÈ¨ÏŞ
+# æŒ‡å®šéœ€è¦sudoæƒé™
 sudo: false
-#ÉèÖÃÏàÓ¦µÄ°æ±¾
+#è®¾ç½®ç›¸åº”çš„ç‰ˆæœ¬
 node_js: 
   - '8'
-# Ö¸¶¨»º´æÄ£¿é£¬¿ÉÑ¡¡£»º´æ¿É¼Ó¿ì±àÒëËÙ¶È¡£
+# æŒ‡å®šç¼“å­˜æ¨¡å—ï¼Œå¯é€‰ã€‚ç¼“å­˜å¯åŠ å¿«ç¼–è¯‘é€Ÿåº¦ã€‚
 # cache:
 #    directories:
 #        - node_modules    
 before_install:
   - npm install -g hexo-cli
-#°²×°hexo¼°²å¼ş
+#å®‰è£…hexoåŠæ’ä»¶
 install:
   - npm install   
   - npm install hexo-deployer-git --save
@@ -22,9 +22,9 @@ script:
   - hexo clean
   - hexo generate
 
-#ĞŞ¸Ä³É×Ô¼ºµÄgithubÓÃ»§Ãû
-#ĞŞ¸Ä³É×Ô¼ºµÄGitHubÓÊÏä
-#GH_token¾ÍÊÇÔÚtravisÖĞÉèÖÃµÄtoken
+#ä¿®æ”¹æˆè‡ªå·±çš„githubç”¨æˆ·å
+#ä¿®æ”¹æˆè‡ªå·±çš„GitHubé‚®ç®±
+#GH_tokenå°±æ˜¯åœ¨travisä¸­è®¾ç½®çš„token
 after_script:
   - cd ./public
   - git init
@@ -33,7 +33,7 @@ after_script:
   - git add .
   - git commit -m "update by Travis-CI"
   - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master 
- #Ö»¼à²âÕâ¸ö·ÖÖ§£¬Ò»ÓĞ¶¯¾²¾Í¿ªÊ¼¹¹½¨
+ #åªç›‘æµ‹è¿™ä¸ªåˆ†æ”¯ï¼Œä¸€æœ‰åŠ¨é™å°±å¼€å§‹æ„å»º
 branches:
   only:
   - blog 
