@@ -3,9 +3,11 @@
 
 title: 语雀之语雀+serverless+travis CI+hexo+github搭建云写作博客
 
+urlname: ovhm8r
+
 date: 2019-01-27 14:02:59 +0800
 
-tags: 语雀,travis,serverless
+tags: [语雀,travis,serverless]
 
 categories: 语雀
 

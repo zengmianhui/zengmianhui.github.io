@@ -3,15 +3,13 @@
 
 title: maven之安装第三方jar到本地 出现 The goal you specified requires a project to execute but there is no POM in this directory 错误
 
+urlname: zutyc3
+
 date: 2019-03-05 23:19:33 +0800
 
-tags: maven,oracle
-
-categories: maven
+tags: []
 
 ---
-
-
 <a name="bd1bf7e7"></a>
 # 转载链接
 

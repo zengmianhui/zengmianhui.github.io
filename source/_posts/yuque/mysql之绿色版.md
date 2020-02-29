@@ -3,15 +3,13 @@
 
 title: mysql之绿色版
 
+urlname: ta9e6i
+
 date: 2019-01-28 03:26:51 +0800
 
-tags: mysql,数据库
-
-categories: mysql
+tags: []
 
 ---
-
-
 <a name="ea6f3b87"></a>
 # 参考链接
 [MySQL 5.7.20绿色版安装详细图文教程](https://www.jb51.net/article/129367.htm?utm_medium=referral)  <br />[mysql安装常见问题（系统找不到指定的文件、发生系统错误 1067 进程意外终止）——CSDN@MikanMu](https://blog.csdn.net/mhmyqn/article/details/17043921)  

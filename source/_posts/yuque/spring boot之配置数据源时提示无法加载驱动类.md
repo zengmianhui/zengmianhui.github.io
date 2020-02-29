@@ -3,18 +3,16 @@
 
 title: spring boot之配置数据源时提示无法加载驱动类
 
+urlname: ug2d5n
+
 date: 2019-03-06 22:55:02 +0800
 
-tags: oracle,spring,spring boot
-
-categories: spring boot
+tags: []
 
 ---
-
-
 <a name="ea6f3b87"></a>
 # 参考链接
-[](https://stackoverflow.com/questions/6202653/difference-between-oracle-jdbc-driver-classes/6202721#6202721)[Difference between Oracle jdbc driver classes?](https://stackoverflow.com/questions/6202653/difference-between-oracle-jdbc-driver-classes/6202721#6202721)[——stackoverflow@bw_üezi](https://stackoverflow.com/questions/6202653/difference-between-oracle-jdbc-driver-classes/6202721#6202721)  
+[Difference between Oracle jdbc driver classes?](https://stackoverflow.com/questions/6202653/difference-between-oracle-jdbc-driver-classes/6202721#6202721)[——stackoverflow@bw_üezi](https://stackoverflow.com/questions/6202653/difference-between-oracle-jdbc-driver-classes/6202721#6202721)  
 
 <!--more-->
 <a name="af3c8dff"></a>

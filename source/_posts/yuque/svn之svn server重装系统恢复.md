@@ -3,9 +3,11 @@
 
 title: svn之svn server重装系统恢复
 
+urlname: zxy4nd
+
 date: 2019-02-19 11:02:06 +0800
 
-tags: svn,版本控制工具
+tags: [svn,版本控制工具]
 
 categories: svn
 

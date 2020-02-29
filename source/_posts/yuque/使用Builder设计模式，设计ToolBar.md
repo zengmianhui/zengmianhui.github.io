@@ -3,9 +3,11 @@
 
 title: 使用Builder设计模式，设计ToolBar
 
+urlname: nui80z
+
 date: 2019-06-15 18:20:25 +0800
 
-tags: 设计模式,mvp,android设计模式
+tags: [设计模式,mvp,android设计模式]
 
 categories: 设计模式
 

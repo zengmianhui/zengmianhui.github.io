@@ -3,15 +3,13 @@
 
 title: oracle之技术经验
 
+urlname: yd4suv
+
 date: 2019-02-14 12:05:59 +0800
 
-tags: oracle,数据库
-
-categories: oracle
+tags: []
 
 ---
-
-
 <a name="f66bd8f4"></a>
 # ****O****ra****cle****经验****
  
@@ -255,7 +253,7 @@ Example:jdbc:oracle:thin:@//localhost:1521/orcl.city.com
 
 <a name="859540a4"></a>
 #### ****使用TNSName ****
-[]()使用[TNSName ]()， 要实现这种连接方式首先要建立tnsnames.ora文件，然后通过System.setProperty指明这个文件路径。再通过上面URL中的@符号指定文件中的要使用到的资源。<br />这种格式我现在水平几乎没见过，对于我来说用得到这种的情况并不多吧。当然既然是通过配置文件来读取指定资源肯定也可以直接将资源拿出来放在URL中，直接放在URL中的URL模版是下面这样的（tnsnames.ora这个文件中放的就是@符号后面的那一段代码，当然用文件的好处就是可以配置多个，便于管理）：
+使用[TNSName ]()， 要实现这种连接方式首先要建立tnsnames.ora文件，然后通过System.setProperty指明这个文件路径。再通过上面URL中的@符号指定文件中的要使用到的资源。<br />这种格式我现在水平几乎没见过，对于我来说用得到这种的情况并不多吧。当然既然是通过配置文件来读取指定资源肯定也可以直接将资源拿出来放在URL中，直接放在URL中的URL模版是下面这样的（tnsnames.ora这个文件中放的就是@符号后面的那一段代码，当然用文件的好处就是可以配置多个，便于管理）：
 
 ```
 jdbc:oracle:thin:@TNSName 

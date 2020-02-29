@@ -3,15 +3,13 @@
 
 title: 开发工具之arthas命令
 
+urlname: tfnv65
+
 date: 2019-07-02 15:25:34 +0800
 
-tags: 开发工具,arthas
-
-categories: 开发工具
+tags: []
 
 ---
-
-
 <a name="tSiLs"></a>
 # 开发工具之arthas命令
 <a name="N1m6c"></a>
@@ -59,4 +57,8 @@ redefine D:/tomcat/webapps/test/WEB-INF/classes/com/kingzheng/fsjscx/util/JSON.c
 1. redefine只能重新加载已经存在JVM内存的中class，没有相应的class时，会报错
 
 ![图片.png](https://cdn.nlark.com/yuque/0/2019/png/244275/1562053771798-c118b453-6e64-4560-a068-eab5d572c1a8.png#align=left&display=inline&height=136&name=%E5%9B%BE%E7%89%87.png&originHeight=136&originWidth=699&size=3512&status=done&width=699)
+
+2. 当已经加载过的类，是有编译错误的，也是无法重新加载的
+
+![图片.png](https://cdn.nlark.com/yuque/0/2019/png/244275/1562056224413-a8768fb2-3936-46e9-83a2-602c43218a9f.png#align=left&display=inline&height=82&name=%E5%9B%BE%E7%89%87.png&originHeight=82&originWidth=717&size=2558&status=done&width=717)
 

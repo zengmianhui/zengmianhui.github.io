@@ -3,6 +3,8 @@
 
 title: mysql之Loading class `com.mysql.jdbc.Driver&#39;. This is deprecated. The new driver class is `com.mysql.cj.jdbc.Driver&#39;. The driver
 
+urlname: lg01px
+
 date: 2019-03-05 22:11:05 +0800
 
 tags: []

@@ -3,18 +3,13 @@
 
 title: java之如何使当前程序使用代理
 
+urlname: xg2mli
+
 date: 2019-05-05 12:13:10 +0800
 
 tags: []
 
 ---
-tags:[java, 代理]
-
-categories: java
-
----
-
-
 <a name="VKpaC"></a>
 # 参考链接
 

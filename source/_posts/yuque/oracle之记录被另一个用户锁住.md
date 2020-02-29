@@ -3,15 +3,13 @@
 
 title: oracle之记录被另一个用户锁住
 
+urlname: sogvik
+
 date: 2019-03-25 11:58:05 +0800
 
-tags: oracle,数据库
-
-categories: oracle
+tags: []
 
 ---
-
-
 <a name="ea6f3b87"></a>
 # 参考链接
 [oracle "记录被另一个用户锁定"——博客园@流年煮雪](https://www.cnblogs.com/angusbao/p/7521430.html)

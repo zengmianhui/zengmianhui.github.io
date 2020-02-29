@@ -3,9 +3,11 @@
 
 title: 设计模式之mvp设计模式
 
+urlname: kcx0ku
+
 date: 2019-06-15 18:03:17 +0800
 
-tags: 设计模式,mvp,android设计模式
+tags: [设计模式,mvp,android设计模式]
 
 categories: 设计模式
 
@@ -122,4 +124,5 @@ public class TasksPresenter implements TasksContract.Presenter {
 mTasksPresenter = new TasksPresenter(
         Injection.provideTasksRepository(getApplicationContext()), tasksFragment);
 ```
+
 
