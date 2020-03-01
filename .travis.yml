@@ -10,7 +10,8 @@ node_js:
 #    directories:
 #        - node_modules    
 before_install:
-  - npm install -g hexo-cli
+  # - npm install -g hexo-cli
+  - npm install hexo --save
 #安装hexo及插件
 install:
   - npm install   
