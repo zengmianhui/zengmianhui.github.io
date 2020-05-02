@@ -1,0 +1,840 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="android,activity launchMode,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="文章参考自Understand Android Activity’s LaunchMode:standard,singleTop,singleTask,and singleInstance Activity启动模式及Intent Flags与栈的关联分析 理解Android Activity运行模式（understand Android Activity’s launch mode）Activit">
+<meta name="keywords" content="android,activity launchMode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="理解Android Activity运行模式（understand Android Activity&#39;s launch mode）">
+<meta property="og:url" content="https://iszengmh.github.io/2017/03/22/理解Android-Activity运行模式（understand-Android-Activity-s-launch-mode）/index.html">
+<meta property="og:site_name" content="Mr.zeng&#39;s personal blog">
+<meta property="og:description" content="文章参考自Understand Android Activity’s LaunchMode:standard,singleTop,singleTask,and singleInstance Activity启动模式及Intent Flags与栈的关联分析 理解Android Activity运行模式（understand Android Activity’s launch mode）Activit">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://iszengmh.github.io/2017/03/22/理解Android-Activity运行模式（understand-Android-Activity-s-launch-mode）/diagram_backstack.png">
+<meta property="og:image" content="https://iszengmh.github.io/2017/03/22/理解Android-Activity运行模式（understand-Android-Activity-s-launch-mode）/2017-03-23_105452.png">
+<meta property="og:image" content="https://iszengmh.github.io/2017/03/22/理解Android-Activity运行模式（understand-Android-Activity-s-launch-mode）/singleTask.gif">
+<meta property="og:image" content="https://iszengmh.github.io/2017/03/22/理解Android-Activity运行模式（understand-Android-Activity-s-launch-mode）/singleInstance.png">
+<meta property="og:updated_time" content="2020-05-02T07:29:21.112Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="理解Android Activity运行模式（understand Android Activity&#39;s launch mode）">
+<meta name="twitter:description" content="文章参考自Understand Android Activity’s LaunchMode:standard,singleTop,singleTask,and singleInstance Activity启动模式及Intent Flags与栈的关联分析 理解Android Activity运行模式（understand Android Activity’s launch mode）Activit">
+<meta name="twitter:image" content="https://iszengmh.github.io/2017/03/22/理解Android-Activity运行模式（understand-Android-Activity-s-launch-mode）/diagram_backstack.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 理解Android Activity运行模式（understand Android Activity's launch mode） | Mr.zeng's personal blog </title>
+  <!-- 强制使用https访问 -->
+  <script type="text/javascript">
+    var host = "iszengmh.github.io";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+        window.location.protocol = "https";
+</script>
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Mr.zeng's personal blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                理解Android Activity运行模式（understand Android Activity's launch mode）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-22T23:26:54+00:00" content="2017-03-22">
+              2017-03-22
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/android/四大组件/" itemprop="url" rel="index">
+                    <span itemprop="name">四大组件</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/android/四大组件/activity/" itemprop="url" rel="index">
+                    <span itemprop="name">activity</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2017/03/22/理解Android-Activity运行模式（understand-Android-Activity-s-launch-mode）/" class="leancloud_visitors" data-flag-title="理解Android Activity运行模式（understand Android Activity's launch mode）">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="文章参考自"><a href="#文章参考自" class="headerlink" title="文章参考自"></a>文章参考自</h2><p><a href="https://inthecheesefactory.com/blog/understand-android-activity-launchmode/en" target="_blank" rel="noopener">Understand Android Activity’s LaunchMode:standard,singleTop,singleTask,and singleInstance</a></p>
+<p><a href="http://blog.csdn.net/vipzjyno1/article/details/25463457" target="_blank" rel="noopener">Activity启动模式及Intent Flags与栈的关联分析</a></p>
+<h1 id="理解Android-Activity运行模式（understand-Android-Activity’s-launch-mode）"><a href="#理解Android-Activity运行模式（understand-Android-Activity’s-launch-mode）" class="headerlink" title="理解Android Activity运行模式（understand Android Activity’s launch mode）"></a>理解Android Activity运行模式（understand Android Activity’s launch mode）</h1><h2 id="Activity’s-LaunchMode"><a href="#Activity’s-LaunchMode" class="headerlink" title="Activity’s LaunchMode"></a>Activity’s LaunchMode</h2><p>activity的启动模式，设置了不同的启动模式activity会不同的启动方式，一般使用Intent中的Flag常量来标示如何启动一个Activity<br><a id="more"></a></p>
+<h2 id="understand-Tasks-and-Back-Stack-任务队列和回退栈"><a href="#understand-Tasks-and-Back-Stack-任务队列和回退栈" class="headerlink" title="understand Tasks and Back Stack(任务队列和回退栈)"></a>understand Tasks and Back Stack(任务队列和回退栈)</h2><h3 id="Task"><a href="#Task" class="headerlink" title="Task"></a>Task</h3><p>一个Task是由多个Activity组成，一个应用程序可以有多个任务队列，在Android7.0的新特性——多窗口模式，每一个窗口都会创建一个Task</p>
+<h3 id="Back-Stack"><a href="#Back-Stack" class="headerlink" title="Back Stack"></a>Back Stack</h3><p>Task中的多个Activity被安排在Back Stack中</p>
+<h3 id="可以通过Activity在app中的状态来理解Task和Stack"><a href="#可以通过Activity在app中的状态来理解Task和Stack" class="headerlink" title="可以通过Activity在app中的状态来理解Task和Stack"></a>可以通过Activity在app中的状态来理解Task和Stack</h3><p>1、 在Task中，当Activity A启动Activity B时，当前A会调用onPause()-onStop()，A不在栈顶，没有显示在最前，但是A会保存一些基本的状态（例如滚动的位置或者text），Task状态为A-B，如果用户点击navigation back button时,Activity B会调用onPause()-onStop()-onDestroy()对栈顶进行pop（移出并销毁）,此时Activity A回到栈顶，调用onRestart()-onStart()-onResume()，恢复原来的状态</p>
+<p>2、当用点击Home Screen时，栈顶Activity会执行onPause()-onStop()，其他Activity之前置于栈下面时，就已经调用了onPause()-onStop(),所以所有activity都看不见了，这个过程，Task进入了后台运行<br>4、Activity可以在不同时间、不同Task中实例化多次</p>
+<h2 id="type-of-LaunchMode"><a href="#type-of-LaunchMode" class="headerlink" title="type of LaunchMode"></a>type of LaunchMode</h2><h3 id="standard"><a href="#standard" class="headerlink" title="standard"></a>standard</h3><p>这个模式是默认的Activity的启动模式，每次启动Activity都会创建一个新实例，不会考虑之前实例了多少个这样的Activity</p>
+<p><img src="/2017/03/22/理解Android-Activity运行模式（understand-Android-Activity-s-launch-mode）/diagram_backstack.png" alt="standard的activity启动时，task的状态"></p>
+<h3 id="singleTop"><a href="#singleTop" class="headerlink" title="singleTop"></a>singleTop</h3><p>这个模式下当前activity如果在栈顶，也就是正在前景，如果调用startActivity，启动当前activity，则会取出栈顶的activity。</p>
+<h3 id="SingleTask"><a href="#SingleTask" class="headerlink" title="SingleTask"></a>SingleTask</h3><p>这个模式下，如果当需要打一个activity A，这个A已经在当前Task存在了，此模式会pop在A之上的所有Activity，使A处栈顶，处于前景，系统会调用onNewIntent(),而不创建新实例。</p>
+<p>如果当前Task为A-B-C-D，则从D-B，B不会被重新创建，而是直接恢复引用，置于foreground<br>以下是activity B的生命周期打印结果，可见，B是不会被重新创建的</p>
+<blockquote>
+<p>03-23 13:37:45.258 304-304/com.app.androidbasic I/ActivityB: onRestart: 调用了onRestart</p>
+<p>03-23 13:37:45.258 304-304/com.app.androidbasic I/ActivityB: onStart: 调用onstart()</p>
+<p>03-23 13:37:45.258 304-304/com.app.androidbasic I/ActivityB: onResume: 调用了onResume</p>
+</blockquote>
+<p><img src="/2017/03/22/理解Android-Activity运行模式（understand-Android-Activity-s-launch-mode）/2017-03-23_105452.png" alt="singleTask"></p>
+<p><img src="/2017/03/22/理解Android-Activity运行模式（understand-Android-Activity-s-launch-mode）/singleTask.gif" alt="singleTask"></p>
+<h3 id="SingleInstance"><a href="#SingleInstance" class="headerlink" title="SingleInstance"></a>SingleInstance</h3><p>Task1中A-B-C，当C启动D时，运用此模式下，会将D压入一个新Task中，Task2中D,此时D显示在屏幕上，当D启动C时，模式为standard时，那么会回Task1中，并创建一个新实例C，此时Task1中的结构为A-B-C-C，点击navigation back不会回到D</p>
+<p><img src="/2017/03/22/理解Android-Activity运行模式（understand-Android-Activity-s-launch-mode）/singleInstance.png" alt="singleInstance"></p>
+<h3 id="launchMode-and-Flag"><a href="#launchMode-and-Flag" class="headerlink" title="launchMode and Flag"></a>launchMode and Flag</h3><table>
+<thead>
+<tr>
+<th>Manifest.xml中定义</th>
+<th>同等于Intent.FLAG<em>ACTIVITY</em>*常量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>standard</td>
+<td>默认</td>
+</tr>
+<tr>
+<td>singleTop</td>
+<td>FLAG_ACTIVITY_SINGLE_TOP</td>
+</tr>
+<tr>
+<td>singleTask</td>
+<td>singleTop结合FLAG_ACTIVITY_CLEAR_TOP</td>
+</tr>
+<tr>
+<td>singleInstance</td>
+<td>FLAG_ACTIVITY_NEW_TASK</td>
+</tr>
+</tbody>
+</table>
+<h3 id="详细解释Intent-FLAG"><a href="#详细解释Intent-FLAG" class="headerlink" title="详细解释Intent.FLAG"></a>详细解释Intent.FLAG</h3><h4 id="FLAG-ACTIVITY-NEW-TASK"><a href="#FLAG-ACTIVITY-NEW-TASK" class="headerlink" title="FLAG_ACTIVITY_NEW_TASK"></a>FLAG_ACTIVITY_NEW_TASK</h4><p>这个flag必须与taskAffinity结合才能使用</p>
+<h4 id="FLAG-ACTIVITY-CLEAR-TOP"><a href="#FLAG-ACTIVITY-CLEAR-TOP" class="headerlink" title="FLAG_ACTIVITY_CLEAR_TOP"></a>FLAG_ACTIVITY_CLEAR_TOP</h4><p>请注意和singleTask的区别，与singleTask的区别，FLAG_ACTIVITY_CLEAR_TOP会销毁启动的目标activity，再重新创建一个实例<br>如果当前Task为A-B-C-D，则从D-B，B会被销毁重新创建</p>
+<p>以下为打印的结果，可以得知，B被重新创建</p>
+<blockquote>
+<p>03-23 13:23:01.858 19000-19000/com.app.androidbasic I/ActivityB: onDestroy: 调用onDestroy</p>
+<p>03-23 13:23:01.888 19000-19000/com.app.androidbasic I/ActivityB: onCreate: 调用onCreate，获取当前Task的id6</p>
+<p>03-23 13:23:01.888 19000-19000/com.app.androidbasic I/ActivityB: onStart: 调用onstart()</p>
+<p>03-23 13:23:01.888 19000-19000/com.app.androidbasic I/ActivityB: onResume: 调用了onResume</p>
+</blockquote>
+<p>此标志可以与singleTop结合，实现与singleTask一样的效果，但是一般不使用，因为还不如直接使用singleTask</p>
+<h4 id="FLAG-ACTIVITY-BROUGHT-TO-FRONT"><a href="#FLAG-ACTIVITY-BROUGHT-TO-FRONT" class="headerlink" title="FLAG_ACTIVITY_BROUGHT_TO_FRONT"></a>FLAG_ACTIVITY_BROUGHT_TO_FRONT</h4><blockquote>
+<p>This flag is not normally set by application code, but set for you by the system as described in the launchMode documentation for the singleTask mode.<br>这个flag通常不是由我们来定义的，但是设置了singleTask mode系统会自动为我们设置这个标志</p>
+</blockquote>
+<h4 id="FLAG-ACTIVITY-CLEAR-TASK"><a href="#FLAG-ACTIVITY-CLEAR-TASK" class="headerlink" title="FLAG_ACTIVITY_CLEAR_TASK"></a>FLAG_ACTIVITY_CLEAR_TASK</h4><blockquote>
+<p>If set in an Intent passed to Context.startActivity(), this flag will cause any existing task that would be associated with the activity to be cleared before the activity is started. That is, the activity becomes the new root of an otherwise empty task, and any old activities are finished. This can only be used in conjunction with FLAG_ACTIVITY_NEW_TASK.</p>
+<p>如果设置了这个flag，将会导致已在的task与之关联的activity被清除，这个flag只能与FLAG_ACTIVITY_NEW_TASK结合使用</p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/android/" rel="tag">#android</a>
+          
+            <a href="/tags/activity-launchMode/" rel="tag">#activity launchMode</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/01/hexo个人博客-如何在markdown上引用本地图片的地址？/" rel="next" title="hexo个人博客-如何在markdown上引用本地图片的地址？">
+                <i class="fa fa-chevron-left"></i> hexo个人博客-如何在markdown上引用本地图片的地址？
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/27/再总结一下activity的生命周期吧/" rel="prev" title="再总结一下activity的生命周期吧">
+                再总结一下activity的生命周期吧 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+          <div id="lv-container" data-id="city" data-uid="MTAyMC8yODQ1Mi81MDIz">
+          </div>
+    
+  </div>
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/blog_head.jpg" alt="Mr.zeng">
+          <p class="site-author-name" itemprop="name">Mr.zeng</p>
+          <p class="site-description motion-element" itemprop="description">来这里，查看更多技术的分享</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文章参考自"><span class="nav-number">1.</span> <span class="nav-text">文章参考自</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#理解Android-Activity运行模式（understand-Android-Activity’s-launch-mode）"><span class="nav-number"></span> <span class="nav-text">理解Android Activity运行模式（understand Android Activity’s launch mode）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Activity’s-LaunchMode"><span class="nav-number">1.</span> <span class="nav-text">Activity’s LaunchMode</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#understand-Tasks-and-Back-Stack-任务队列和回退栈"><span class="nav-number">2.</span> <span class="nav-text">understand Tasks and Back Stack(任务队列和回退栈)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Task"><span class="nav-number">2.1.</span> <span class="nav-text">Task</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Back-Stack"><span class="nav-number">2.2.</span> <span class="nav-text">Back Stack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可以通过Activity在app中的状态来理解Task和Stack"><span class="nav-number">2.3.</span> <span class="nav-text">可以通过Activity在app中的状态来理解Task和Stack</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#type-of-LaunchMode"><span class="nav-number">3.</span> <span class="nav-text">type of LaunchMode</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#standard"><span class="nav-number">3.1.</span> <span class="nav-text">standard</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#singleTop"><span class="nav-number">3.2.</span> <span class="nav-text">singleTop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SingleTask"><span class="nav-number">3.3.</span> <span class="nav-text">SingleTask</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SingleInstance"><span class="nav-number">3.4.</span> <span class="nav-text">SingleInstance</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#launchMode-and-Flag"><span class="nav-number">3.5.</span> <span class="nav-text">launchMode and Flag</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#详细解释Intent-FLAG"><span class="nav-number">3.6.</span> <span class="nav-text">详细解释Intent.FLAG</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FLAG-ACTIVITY-NEW-TASK"><span class="nav-number">3.6.1.</span> <span class="nav-text">FLAG_ACTIVITY_NEW_TASK</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FLAG-ACTIVITY-CLEAR-TOP"><span class="nav-number">3.6.2.</span> <span class="nav-text">FLAG_ACTIVITY_CLEAR_TOP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FLAG-ACTIVITY-BROUGHT-TO-FRONT"><span class="nav-number">3.6.3.</span> <span class="nav-text">FLAG_ACTIVITY_BROUGHT_TO_FRONT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FLAG-ACTIVITY-CLEAR-TASK"><span class="nav-number">3.6.4.</span> <span class="nav-text">FLAG_ACTIVITY_CLEAR_TASK</span></a></li></ol></li></ol></li></ol></li></div>
+            
+          </div>
+        </section>
+      
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=27955658&auto=0&height=66"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.zeng</span>
+</div>
+
+
+
+<div class="theme-info">
+  github地址-<a class="theme-link" href="https://github.com/iszengmh/">iszengmh</a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+  
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+  
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+   
+
+    
+      
+    
+
+   
+        <!-- UY BEGIN -->
+        <script type="text/javascript">
+           (function(d, s) {
+               var j, e = d.getElementsByTagName(s)[0];
+
+               if (typeof LivereTower === 'function') { return; }
+
+               j = d.createElement(s);
+               j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+               j.async = true;
+
+               e.parentNode.insertBefore(j, e);
+           })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+        <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("p0KDi9bm8n854nHMDy73SpnU-gzGzoHsz", "Ub1cwWstEHmBqOqGoqlcY7G8");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+
+</html>

@@ -1,0 +1,813 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="适配器模式,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="参考文章java-design-patterns三大软件设计原则你必须理解的三大软件原则3_YAGNI设计模式之适配器模式——掘金 正文 开始学习之前，最好知道“三大软件设计原则”">
+<meta name="keywords" content="适配器模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式：适配器模式">
+<meta property="og:url" content="https://iszengmh.github.io/2018/05/16/设计模式：适配器模式/index.html">
+<meta property="og:site_name" content="Mr.zeng&#39;s personal blog">
+<meta property="og:description" content="参考文章java-design-patterns三大软件设计原则你必须理解的三大软件原则3_YAGNI设计模式之适配器模式——掘金 正文 开始学习之前，最好知道“三大软件设计原则”">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/5/14/1635a3e33fa3c524?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:updated_time" content="2020-05-02T07:29:21.120Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式：适配器模式">
+<meta name="twitter:description" content="参考文章java-design-patterns三大软件设计原则你必须理解的三大软件原则3_YAGNI设计模式之适配器模式——掘金 正文 开始学习之前，最好知道“三大软件设计原则”">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/5/14/1635a3e33fa3c524?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 设计模式：适配器模式 | Mr.zeng's personal blog </title>
+  <!-- 强制使用https访问 -->
+  <script type="text/javascript">
+    var host = "iszengmh.github.io";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+        window.location.protocol = "https";
+</script>
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Mr.zeng's personal blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                设计模式：适配器模式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-05-16T22:41:03+00:00" content="2018-05-16">
+              2018-05-16
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/设计模式/适配器模式/" itemprop="url" rel="index">
+                    <span itemprop="name">适配器模式</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2018/05/16/设计模式：适配器模式/" class="leancloud_visitors" data-flag-title="设计模式：适配器模式">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h1><p><a href="http://java-design-patterns.com/patterns/adapter/" target="_blank" rel="noopener">java-design-patterns</a><br><a href="https://blog.csdn.net/zj_show/article/details/8078447" target="_blank" rel="noopener">三大软件设计原则</a><br><a href="https://blog.csdn.net/zj_show/article/details/8078447" target="_blank" rel="noopener">你必须理解的三大软件原则3_YAGNI</a><br><a href="blueskykong.com">设计模式之适配器模式——掘金</a></p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><blockquote>
+<p>开始学习之前，最好知道“三大软件设计原则”<br><a id="more"></a></p>
+<h2 id="三大软件设计原则"><a href="#三大软件设计原则" class="headerlink" title="三大软件设计原则"></a>三大软件设计原则</h2></blockquote>
+<ul>
+<li>KISS（Keep it Simple Stupid保持简单而不复杂）<blockquote>
+<p>用最少的代码实现最好的功能<br>简单就是最终的复杂<br>不实现过度的封装</p>
+</blockquote>
+</li>
+<li>YAGNI（You Ain’t Gonna Need It你不需要它）<blockquote>
+<p>如果概念上没有提到，那代码中也不能出现。举个例子来讲，将数据库访问抽象在一层是惯例，他们处理不同驱动间的差异，像MySQL, PostgreSQL and Oracle。如果你正工作于一个发布在共享主机的企业网站上，那他们改变数据库的几率有多大呢？请记住概念是用预算记下来的。</p>
+</blockquote>
+</li>
+<li>Don’t Repeat Yourself(不做重复的事)<blockquote>
+<p>&emsp;&emsp;在系统中，每一项知识都必须具有单一的，明确的，权威的表述。<br>&emsp;&emsp;程序中的每个重要功能都应该在源代码中的一个地方实现。在通过不同的代码段执行类似的功能的情况下，通过提取不同的部分将它们合并成一个通常是有益的。<br>为什么需要减少重复的工作：<br>&emsp;&emsp;复制（无意或有目的的重复）可能导致维护噩梦，糟糕的保理和逻辑矛盾。<br>&emsp;&emsp;对系统的任何单个元素的修改不需要改变其他逻辑上不相关的元素。<br>&emsp;&emsp;此外，逻辑上相关的元素全部可预测并一致地变化，并因此保持同步。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
+<p>适配器模式，1.它可以使用两个不同的类协同工作，或者使两个不同的接口实现协同工作2.它可以使用两个类的协同工作，并且可以实现多种协同工作方式,比如，我们的笔记本要必须要跟插座协同工作，那就需要电源适配器，如果电源适配器坏了，可以再买一个新。</p>
+</blockquote>
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><ul>
+<li>目标角色（Target）：— 定义Client使用的与特定领域相关的接口。</li>
+<li>客户角色（Client）：与符合Target接口的对象协同。</li>
+<li>被适配角色（Adaptee)：定义一个已经存在并已经使用的接口，这个接口需要适配。</li>
+<li>适配器角色（Adapte) ：适配器模式的核心。它将对被适配Adaptee角色已有的接口转换为目标角色Target匹配的接口。对Adaptee的接口与Target接口进行适配.<h2 id="图例"><a href="#图例" class="headerlink" title="图例"></a>图例</h2><img src="https://user-gold-cdn.xitu.io/2018/5/14/1635a3e33fa3c524?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="图片来自http://blueskykong.com/2017/01/29/design-adapter/"></li>
+</ul>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><blockquote>
+<p>现在以船长滑船为例，船长和船本是不相干的，我们现在需要适配器</p>
+</blockquote>
+<h3 id="船长的滑动技能"><a href="#船长的滑动技能" class="headerlink" title="船长的滑动技能"></a>船长的滑动技能</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 扬帆的技能</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public interface RowingBoat &#123;</span><br><span class="line">    /**</span><br><span class="line">     * 扬</span><br><span class="line">     */</span><br><span class="line">    void row();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="船长"><a href="#船长" class="headerlink" title="船长"></a>船长</h3><blockquote>
+<p>现在我们使用船长实现扬帆技能，这也有可能是你系统的原本设计，只提供船长，不提供船</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 船长，</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class Captain implements RowingBoat &#123;</span><br><span class="line">    private RowingBoat rowingBoat;</span><br><span class="line">    </span><br><span class="line">    public Captain(RowingBoat rowingBoat) &#123;</span><br><span class="line">        this.rowingBoat =rowingBoat;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void row() &#123;</span><br><span class="line">        System.out.print(&quot;船长扬-&quot;);</span><br><span class="line">        rowingBoat.row();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="船"><a href="#船" class="headerlink" title="船"></a>船</h3><blockquote>
+<p>现在有一只船，这可能是你后来使用或者设计， </p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 船</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class FishingBoat &#123;</span><br><span class="line">    public void sail()&#123;</span><br><span class="line">        System.out.println(&quot;帆&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="适配器"><a href="#适配器" class="headerlink" title="适配器"></a>适配器</h3><blockquote>
+<p>现在应该想怎么使用船长和船协同工作呢，我们需要创建适配器来协同</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 创建适配器，使船长能够扬帆</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class RowingBoatAdpater implements RowingBoat&#123;</span><br><span class="line">    private FishingBoat boat;</span><br><span class="line">    public RowingBoatAdpater() &#123;</span><br><span class="line">        boat=new FishingBoat();</span><br><span class="line">    &#125;</span><br><span class="line">    @Override</span><br><span class="line">    public void row() &#123;</span><br><span class="line">        boat.sail();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="船长使用适配器"><a href="#船长使用适配器" class="headerlink" title="船长使用适配器"></a>船长使用适配器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">        Captain c=new Captain(new RowingBoatAdpater());</span><br><span class="line">        c.row();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="以下都是使用适配器模式的实例"><a href="#以下都是使用适配器模式的实例" class="headerlink" title="以下都是使用适配器模式的实例"></a>以下都是使用适配器模式的实例</h3><ul>
+<li><p><code>Arrays.asList(arg0)</code></p>
+</li>
+<li><p><code>java.util.Collections.list()</code></p>
+</li>
+<li><p>　<code>java.util.Collections.enumeration()</code></p>
+</li>
+<li><p>　<code>javax.xml.bind.annotation.adapters.XMLAdapter</code></p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/适配器模式/" rel="tag">#适配器模式</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/16/算法：冒泡排序/" rel="next" title="算法：冒泡排序">
+                <i class="fa fa-chevron-left"></i> 算法：冒泡排序
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/22/tomcat之如何让tomcat运行在指定JDK环境上/" rel="prev" title="tomcat之如何让tomcat运行在指定JDK环境上">
+                tomcat之如何让tomcat运行在指定JDK环境上 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+          <div id="lv-container" data-id="city" data-uid="MTAyMC8yODQ1Mi81MDIz">
+          </div>
+    
+  </div>
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/blog_head.jpg" alt="Mr.zeng">
+          <p class="site-author-name" itemprop="name">Mr.zeng</p>
+          <p class="site-description motion-element" itemprop="description">来这里，查看更多技术的分享</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文章"><span class="nav-number">1.</span> <span class="nav-text">参考文章</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#三大软件设计原则"><span class="nav-number">2.1.</span> <span class="nav-text">三大软件设计原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">2.2.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构"><span class="nav-number">2.3.</span> <span class="nav-text">结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图例"><span class="nav-number">2.4.</span> <span class="nav-text">图例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#示例"><span class="nav-number">2.5.</span> <span class="nav-text">示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#船长的滑动技能"><span class="nav-number">2.5.1.</span> <span class="nav-text">船长的滑动技能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#船长"><span class="nav-number">2.5.2.</span> <span class="nav-text">船长</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#船"><span class="nav-number">2.5.3.</span> <span class="nav-text">船</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#适配器"><span class="nav-number">2.5.4.</span> <span class="nav-text">适配器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#船长使用适配器"><span class="nav-number">2.5.5.</span> <span class="nav-text">船长使用适配器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#以下都是使用适配器模式的实例"><span class="nav-number">2.5.6.</span> <span class="nav-text">以下都是使用适配器模式的实例</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=27955658&auto=0&height=66"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.zeng</span>
+</div>
+
+
+
+<div class="theme-info">
+  github地址-<a class="theme-link" href="https://github.com/iszengmh/">iszengmh</a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+  
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+  
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+   
+
+    
+      
+    
+
+   
+        <!-- UY BEGIN -->
+        <script type="text/javascript">
+           (function(d, s) {
+               var j, e = d.getElementsByTagName(s)[0];
+
+               if (typeof LivereTower === 'function') { return; }
+
+               j = d.createElement(s);
+               j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+               j.async = true;
+
+               e.parentNode.insertBefore(j, e);
+           })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+        <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("p0KDi9bm8n854nHMDy73SpnU-gzGzoHsz", "Ub1cwWstEHmBqOqGoqlcY7G8");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+
+</html>

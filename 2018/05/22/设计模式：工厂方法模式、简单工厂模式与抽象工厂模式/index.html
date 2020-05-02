@@ -1,0 +1,788 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="工厂模式,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="参考链接（如有侵权立即删除）Abstract Factory——java-design-patterns简单工厂、工厂方法和抽象工厂模式示例——CSDN@逐兔郎简单工厂模式,工厂方法模式和抽象工厂模式的异同——百度词库@hui332986207抽象工厂模式和工厂模式的区别？——知乎开闭原则——百度百科 推荐学习地址java-design-patterns   正文概述&amp;emsp;&amp;emsp;首先我">
+<meta name="keywords" content="工厂模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式：工厂方法模式、简单工厂模式与抽象工厂模式">
+<meta property="og:url" content="https://iszengmh.github.io/2018/05/22/设计模式：工厂方法模式、简单工厂模式与抽象工厂模式/index.html">
+<meta property="og:site_name" content="Mr.zeng&#39;s personal blog">
+<meta property="og:description" content="参考链接（如有侵权立即删除）Abstract Factory——java-design-patterns简单工厂、工厂方法和抽象工厂模式示例——CSDN@逐兔郎简单工厂模式,工厂方法模式和抽象工厂模式的异同——百度词库@hui332986207抽象工厂模式和工厂模式的区别？——知乎开闭原则——百度百科 推荐学习地址java-design-patterns   正文概述&amp;emsp;&amp;emsp;首先我">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://pic2.zhimg.com/80/09067f878916c0e4377bfadc82afc248_hd.jpg">
+<meta property="og:image" content="https://iszengmh.github.io/2018/05/22/设计模式：工厂方法模式、简单工厂模式与抽象工厂模式/1.jpg">
+<meta property="og:image" content="https://pic1.zhimg.com/80/e8184a3c6b3463338d85c329004d7c64_hd.jpg">
+<meta property="og:updated_time" content="2020-05-02T07:29:21.120Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式：工厂方法模式、简单工厂模式与抽象工厂模式">
+<meta name="twitter:description" content="参考链接（如有侵权立即删除）Abstract Factory——java-design-patterns简单工厂、工厂方法和抽象工厂模式示例——CSDN@逐兔郎简单工厂模式,工厂方法模式和抽象工厂模式的异同——百度词库@hui332986207抽象工厂模式和工厂模式的区别？——知乎开闭原则——百度百科 推荐学习地址java-design-patterns   正文概述&amp;emsp;&amp;emsp;首先我">
+<meta name="twitter:image" content="https://pic2.zhimg.com/80/09067f878916c0e4377bfadc82afc248_hd.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 设计模式：工厂方法模式、简单工厂模式与抽象工厂模式 | Mr.zeng's personal blog </title>
+  <!-- 强制使用https访问 -->
+  <script type="text/javascript">
+    var host = "iszengmh.github.io";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+        window.location.protocol = "https";
+</script>
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Mr.zeng's personal blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                设计模式：工厂方法模式、简单工厂模式与抽象工厂模式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-05-22T21:53:07+00:00" content="2018-05-22">
+              2018-05-22
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/设计模式/工厂模式/" itemprop="url" rel="index">
+                    <span itemprop="name">工厂模式</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2018/05/22/设计模式：工厂方法模式、简单工厂模式与抽象工厂模式/" class="leancloud_visitors" data-flag-title="设计模式：工厂方法模式、简单工厂模式与抽象工厂模式">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="参考链接（如有侵权立即删除）"><a href="#参考链接（如有侵权立即删除）" class="headerlink" title="参考链接（如有侵权立即删除）"></a>参考链接（如有侵权立即删除）</h1><p><a href="http://java-design-patterns.com/patterns/abstract-factory/" target="_blank" rel="noopener">Abstract Factory——java-design-patterns</a><br><a href="https://blog.csdn.net/zhutulang/article/details/43495825" target="_blank" rel="noopener">简单工厂、工厂方法和抽象工厂模式示例——CSDN@逐兔郎</a><br><a href="https://wenku.baidu.com/view/60c6ca21192e45361066f5e0.html" target="_blank" rel="noopener">简单工厂模式,工厂方法模式和抽象工厂模式的异同——百度词库@hui332986207</a><br><a href="https://www.zhihu.com/question/20367734/answer/115807228" target="_blank" rel="noopener">抽象工厂模式和工厂模式的区别？——知乎</a><br><a href="https://baike.baidu.com/item/%E5%BC%80%E9%97%AD%E5%8E%9F%E5%88%99/2828775" target="_blank" rel="noopener">开闭原则——百度百科</a></p>
+<h2 id="推荐学习地址"><a href="#推荐学习地址" class="headerlink" title="推荐学习地址"></a>推荐学习地址</h2><p><a href="http://java-design-patterns.com" target="_blank" rel="noopener">java-design-patterns</a>  </p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>&emsp;&emsp;首先我们需要了解一下“开闭原则”，“开闭原则”就是不修改原有的代码，通过增加模块的方式来扩展原有的功能。接下来简述三种设计模式</p>
+<a id="more"></a>
+<ol>
+<li>简单工厂模式</li>
+</ol>
+<blockquote>
+<p>&emsp;&emsp;专门定义一个类来负责创建其他类的实例，被创建的实例通常都具有+共同的父类。它又称为静态工厂方法模式。它的实质是由一个工厂类根据传入的参数，动态决定应该创建哪一个产品类（这些产品类继承自一个父类或接口）的实例。简单工厂模式的创建目标，所有创建的对象都是充当这个角色的某个具体类的实例。</p>
+</blockquote>
+<ol>
+<li>工厂方法模式（工厂模式）</li>
+</ol>
+<blockquote>
+<p>&emsp;&emsp;工厂方法是粒度很小的设计模式，因为模式的表现只是一个抽象的方法。+提前定义用于创建对象的接口，让子类决定实例化具体的某一个类，即在工厂和产品中间增加接口，工厂不再负责产品的创建，由接口针对不同条件返回具体的类实例，由具体类实例去实现。</p>
+</blockquote>
+<ol>
+<li>抽象工厂模式</li>
+</ol>
+<blockquote>
+<p>&emsp;&emsp;抽象工厂模式是提供一个接口来创建相关或依赖对象的类，而不指定它们的具体类。抽象工厂与工厂模式很像，只是抽象工厂更像是工厂中工厂，既然叫抽象工厂，当然是工厂具体用途是什么时候我们不确定了，但是我们设计工厂的原型，规范了未来工厂的扩展。</p>
+</blockquote>
+<h3 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h3><p><img src="https://pic2.zhimg.com/80/09067f878916c0e4377bfadc82afc248_hd.jpg" alt="简单工厂模式"></p>
+<p>假设需要生产两种鼠标，戴尔鼠标和惠普鼠标。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 创建一个鼠标工厂，用来生产鼠标</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class MouseFactory &#123;</span><br><span class="line">    private MouseFactory() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    /**</span><br><span class="line">     * 生产鼠标,0为戴尔，1为惠普</span><br><span class="line">     */</span><br><span class="line">    public static Mouse createMouse(int i)&#123;</span><br><span class="line">        return i==0?(new DellMouse()):(new HpMouse());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 设计鼠标接口</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public interface Mouse &#123;</span><br><span class="line">    void sayHi();</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 戴尔鼠标</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class DellMouse implements Mouse&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void sayHi() &#123;</span><br><span class="line">        System.out.println(&quot;戴尔鼠标&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 惠普鼠标</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class HpMouse implements Mouse&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void sayHi() &#123;</span><br><span class="line">        System.out.println(&quot;惠普鼠标&quot;);     </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 简单工厂模式</span><br><span class="line"> * 简单工厂模式不是23种设计模式中的，专门定义一个用来创建其他类，这些类通常都拥有同一个父类。</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class Main &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Mouse mouse = MouseFactory.createMouse(0);//创建鼠标工厂</span><br><span class="line">        mouse.sayHi();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><p>假设现在不仅有戴尔鼠标和惠普鼠标了，而且还要生产联想鼠标，但是我们原告的简单工厂设计模式，已经定义好<code>MouseFacotry</code>仅生产两种鼠标，如果要去修改源代码的话，违背了“开闭原则”，所以简单工厂设计模式不适用产品扩展。现在我们来使用工厂方法模式扩展鼠标产品的生产。<br><img src="/2018/05/22/设计模式：工厂方法模式、简单工厂模式与抽象工厂模式/1.jpg" alt="工厂方法模式类图"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 戴尔鼠标</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class DellMouse implements Mouse&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void sayHi() &#123;</span><br><span class="line">        System.out.println(&quot;戴尔鼠标&quot;+test());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class DellMouseFactory extends MouseFactory &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    Mouse createMouse() &#123;</span><br><span class="line">        return new DellMouse();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 惠普鼠标</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class HpMouse implements Mouse&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void sayHi() &#123;</span><br><span class="line">        System.out.println(&quot;惠普鼠标&quot;);     </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class HpMouseFactory extends MouseFactory&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    Mouse createMouse() &#123;</span><br><span class="line">        return new HpMouse();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 联想鼠标</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class LenovoMouse implements Mouse&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void sayHi() &#123;</span><br><span class="line">        System.out.println(&quot;联想鼠标&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class LenovoMouseFactory extends MouseFactory &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    Mouse createMouse() &#123;</span><br><span class="line">        return new LenovoMouse();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 鼠标</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public interface Mouse &#123;</span><br><span class="line">    void sayHi();</span><br><span class="line"></span><br><span class="line">    default double test()&#123;</span><br><span class="line">        return 1L;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 设计鼠标工厂</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public abstract class MouseFactory &#123;</span><br><span class="line">    abstract Mouse createMouse();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 工厂方法模式</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class Main &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        //如果未来有更多类型的鼠标，那么我们就实现更多工厂</span><br><span class="line">        Mouse dellMouse = new DellMouseFactory().createMouse();</span><br><span class="line">        dellMouse.sayHi();</span><br><span class="line">        Mouse hpMouse = new HpMouseFactory().createMouse();</span><br><span class="line">        hpMouse.sayHi();</span><br><span class="line">        Mouse lenovoMouse = new LenovoMouseFactory().createMouse();</span><br><span class="line">        lenovoMouse.sayHi();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="抽象工厂"><a href="#抽象工厂" class="headerlink" title="抽象工厂"></a>抽象工厂</h2><p>如果现在我们不仅有鼠标产品，还有键盘或者耳机等等，其他产品，这样也不能在工厂方法模式上去修改源代码了，因为工厂方法模式只下定义了子类只能生产鼠标，而不能生产其他产品。<br><img src="https://pic1.zhimg.com/80/e8184a3c6b3463338d85c329004d7c64_hd.jpg" alt="抽象工厂"><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 抽象设计鼠标，规范未来产品</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public interface Mouse &#123;</span><br><span class="line">    void sayHi();</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 抽象设计键盘，规范未来产品</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public interface KeyBo &#123;</span><br><span class="line">    void sayHi();</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 华硕鼠标</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class AsusMouse implements Mouse &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void sayHi() &#123;</span><br><span class="line">        System.out.println(&quot;华硕鼠标&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 华硕键盘</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class AsusKeyBo implements KeyBo &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void sayHi() &#123;</span><br><span class="line">        System.out.println(&quot;华硕键盘&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 戴尔鼠标</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class DellMouse implements Mouse&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void sayHi() &#123;</span><br><span class="line">        System.out.println(&quot;戴尔鼠标&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 戴尔键盘</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class DellKeyBo implements KeyBo &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void sayHi() &#123;</span><br><span class="line">        System.out.println(&quot;戴尔键盘&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 惠普鼠标</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class HpMouse implements Mouse&#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void sayHi() &#123;</span><br><span class="line">        System.out.println(&quot;惠普鼠标&quot;);     </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 惠普键盘</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class HpKeyBo implements KeyBo &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void sayHi() &#123;</span><br><span class="line">        System.out.println(&quot;惠普键盘&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 如果需要增加新产品时，简单工厂和工厂方法都违背了开闭原则，我们现在使用抽象工厂模式</span><br><span class="line"> * 抽象化工厂，使用工厂可以被扩展，可以有键盘工厂，耳机工厂，甚至戴尔键盘工厂，戴尔耳机工厂</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public abstract class PcFatory &#123;</span><br><span class="line">    abstract Mouse createMouse();</span><br><span class="line">    abstract KeyBo createKeyBo();</span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 华硕工厂，可以生产鼠标和键盘</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class AsusFactory extends PcFatory &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    Mouse createMouse() &#123;</span><br><span class="line">        return new AsusMouse();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    KeyBo createKeyBo() &#123;</span><br><span class="line">        // TODO Auto-generated method stub</span><br><span class="line">        return new AsusKeyBo();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 戴尔工厂</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class DellFactory extends HpFactory &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    Mouse createMouse() &#123;</span><br><span class="line">        return new DellMouse();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    KeyBo createKeyBo() &#123;</span><br><span class="line">        return new DellKeyBo();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">/**</span><br><span class="line"> * 惠普工厂，现在工厂不仅可以生产鼠标了，还可以生产键盘</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public  class HpFactory extends PcFatory&#123;</span><br><span class="line">     Mouse createMouse() &#123;</span><br><span class="line">        return new HpMouse();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    KeyBo createKeyBo() &#123;</span><br><span class="line">        return new HpKeyBo();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">//每个工厂可以生产两种产品</span><br><span class="line">        PcFatory hpf=new HpFactory();</span><br><span class="line">        Mouse hpm = hpf.createMouse();</span><br><span class="line">        hpm.sayHi();</span><br><span class="line">        KeyBo hpk = hpf.createKeyBo();</span><br><span class="line">        hpk.sayHi();</span><br><span class="line">        </span><br><span class="line">        PcFatory asf=new AsusFactory(); </span><br><span class="line">        Mouse asm = asf.createMouse();</span><br><span class="line">        asm.sayHi();</span><br><span class="line">        KeyBo ask = asf.createKeyBo();</span><br><span class="line">        ask.sayHi();</span><br><span class="line">        </span><br><span class="line">        PcFatory def=new DellFactory(); </span><br><span class="line">        Mouse dem = def.createMouse();</span><br><span class="line">        dem.sayHi();</span><br><span class="line">        KeyBo dek = def.createKeyBo();</span><br><span class="line">        dek.sayHi();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="我们也可以使用枚举的方法创建工厂，减少大部分的代码"><a href="#我们也可以使用枚举的方法创建工厂，减少大部分的代码" class="headerlink" title="我们也可以使用枚举的方法创建工厂，减少大部分的代码"></a>我们也可以使用枚举的方法创建工厂，减少大部分的代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 使用枚举方式，创建工厂</span><br><span class="line"> * @author zmh</span><br><span class="line"> *</span><br><span class="line"> */</span><br><span class="line">public class FactoryMarker &#123;</span><br><span class="line">    public enum FactoryType&#123;</span><br><span class="line">        ASUS,DELL,HP</span><br><span class="line">    &#125;</span><br><span class="line">    public static PcFatory getFactory(FactoryType type)&#123;</span><br><span class="line">        switch (type) &#123;</span><br><span class="line">        case ASUS:</span><br><span class="line">            return new AsusFactory();</span><br><span class="line">        case DELL:</span><br><span class="line">            return new DellFactory();</span><br><span class="line">        case HP:</span><br><span class="line">            return new HpFactory();</span><br><span class="line"></span><br><span class="line">        default:</span><br><span class="line">            throw new IllegalArgumentException(&quot;KingdomType not supported.&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        /**</span><br><span class="line">         * 我们还可以为工厂类实现枚举，省去大部分的代码</span><br><span class="line">         */</span><br><span class="line">        PcFatory asusFatory = FactoryMarker.getFactory(FactoryType.ASUS);</span><br><span class="line">        Mouse asusMouse = asusFatory.createMouse();</span><br><span class="line">        System.out.println(&quot;--------------------&quot;);</span><br><span class="line">        asusMouse.sayHi();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/工厂模式/" rel="tag">#工厂模式</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/22/算法：二分查找法/" rel="next" title="算法：二分查找法">
+                <i class="fa fa-chevron-left"></i> 算法：二分查找法
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/26/viewpager在最后一页滑动之后，跳转到主页面/" rel="prev" title="viewpager在最后一页滑动之后，跳转到主页面">
+                viewpager在最后一页滑动之后，跳转到主页面 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+          <div id="lv-container" data-id="city" data-uid="MTAyMC8yODQ1Mi81MDIz">
+          </div>
+    
+  </div>
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/blog_head.jpg" alt="Mr.zeng">
+          <p class="site-author-name" itemprop="name">Mr.zeng</p>
+          <p class="site-description motion-element" itemprop="description">来这里，查看更多技术的分享</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接（如有侵权立即删除）"><span class="nav-number">1.</span> <span class="nav-text">参考链接（如有侵权立即删除）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#推荐学习地址"><span class="nav-number">1.1.</span> <span class="nav-text">推荐学习地址</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">2.1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单工厂模式"><span class="nav-number">2.1.1.</span> <span class="nav-text">简单工厂模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工厂方法模式"><span class="nav-number">2.2.</span> <span class="nav-text">工厂方法模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#抽象工厂"><span class="nav-number">2.3.</span> <span class="nav-text">抽象工厂</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#我们也可以使用枚举的方法创建工厂，减少大部分的代码"><span class="nav-number">2.3.1.</span> <span class="nav-text">我们也可以使用枚举的方法创建工厂，减少大部分的代码</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=27955658&auto=0&height=66"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.zeng</span>
+</div>
+
+
+
+<div class="theme-info">
+  github地址-<a class="theme-link" href="https://github.com/iszengmh/">iszengmh</a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+  
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+  
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+   
+
+    
+      
+    
+
+   
+        <!-- UY BEGIN -->
+        <script type="text/javascript">
+           (function(d, s) {
+               var j, e = d.getElementsByTagName(s)[0];
+
+               if (typeof LivereTower === 'function') { return; }
+
+               j = d.createElement(s);
+               j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+               j.async = true;
+
+               e.parentNode.insertBefore(j, e);
+           })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+        <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("p0KDi9bm8n854nHMDy73SpnU-gzGzoHsz", "Ub1cwWstEHmBqOqGoqlcY7G8");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+
+</html>

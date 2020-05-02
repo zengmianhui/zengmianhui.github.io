@@ -1,0 +1,881 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="二分查找法,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1">
+
+
+
+
+
+
+<meta name="description" content="参考链接(如有侵权立即删除)二分查找有几种写法？它们的区别是什么？——知乎二分查找算法（左闭右开区间）二分查找法——百度百科 正文概述 二分查找法，也叫折半查找法，提供一个升序的需要查找数组，再一分为二分别使用左右指针循环匹配，不断测算需要查找的区间，不断进行将数组折半。二分查找法的效率非常高，但是很少人能写出稳定的二分查找法（本来想写很少人能写出没有bug的二分查找法，但是想想欠妥，哪有没有bu">
+<meta name="keywords" content="二分查找法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法：二分查找法">
+<meta property="og:url" content="https://iszengmh.github.io/2018/05/22/算法：二分查找法/index.html">
+<meta property="og:site_name" content="Mr.zeng&#39;s personal blog">
+<meta property="og:description" content="参考链接(如有侵权立即删除)二分查找有几种写法？它们的区别是什么？——知乎二分查找算法（左闭右开区间）二分查找法——百度百科 正文概述 二分查找法，也叫折半查找法，提供一个升序的需要查找数组，再一分为二分别使用左右指针循环匹配，不断测算需要查找的区间，不断进行将数组折半。二分查找法的效率非常高，但是很少人能写出稳定的二分查找法（本来想写很少人能写出没有bug的二分查找法，但是想想欠妥，哪有没有bu">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-05-02T07:29:21.120Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法：二分查找法">
+<meta name="twitter:description" content="参考链接(如有侵权立即删除)二分查找有几种写法？它们的区别是什么？——知乎二分查找算法（左闭右开区间）二分查找法——百度百科 正文概述 二分查找法，也叫折半查找法，提供一个升序的需要查找数组，再一分为二分别使用左右指针循环匹配，不断测算需要查找的区间，不断进行将数组折半。二分查找法的效率非常高，但是很少人能写出稳定的二分查找法（本来想写很少人能写出没有bug的二分查找法，但是想想欠妥，哪有没有bu">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 算法：二分查找法 | Mr.zeng's personal blog </title>
+  <!-- 强制使用https访问 -->
+  <script type="text/javascript">
+    var host = "iszengmh.github.io";
+    if ((host == window.location.host) && (window.location.protocol != "https:"))
+        window.location.protocol = "https";
+</script>
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Mr.zeng's personal blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope="" itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                算法：二分查找法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-05-22T07:14:15+00:00" content="2018-05-22">
+              2018-05-22
+            </time>
+          </span>
+
+          
+            <span class="post-category">
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope="" itemtype="https://schema.org/Thing">
+                  <a href="/categories/算法/二分查找法/" itemprop="url" rel="index">
+                    <span itemprop="name">二分查找法</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+             <span id="/2018/05/22/算法：二分查找法/" class="leancloud_visitors" data-flag-title="算法：二分查找法">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="参考链接-如有侵权立即删除"><a href="#参考链接-如有侵权立即删除" class="headerlink" title="参考链接(如有侵权立即删除)"></a>参考链接(如有侵权立即删除)</h1><p><a href="https://www.zhihu.com/question/36132386" target="_blank" rel="noopener">二分查找有几种写法？它们的区别是什么？——知乎</a><br><a href="https://blog.csdn.net/wingWC/article/details/78229684" target="_blank" rel="noopener">二分查找算法（左闭右开区间）</a><br><a href="https://baike.baidu.com/item/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/10628618?fr=aladdin&amp;fromid=8283141&amp;fromtitle=%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%B3%95" target="_blank" rel="noopener">二分查找法——百度百科</a></p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><blockquote>
+<p>二分查找法，也叫折半查找法，提供一个升序的需要查找数组，再一分为二分别使用左右指针循环匹配，不断测算需要查找的区间，不断进行将数组折半。二分查找法的效率非常高，但是很少人能写出稳定的二分查找法（本来想写很少人能写出没有bug的二分查找法，但是想想欠妥，哪有没有bug的程序）</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><blockquote>
+<p>注：现在是需要查找的数组中只有非负整数</p>
+</blockquote>
+<h3 id="先有一个升序了的数组"><a href="#先有一个升序了的数组" class="headerlink" title="先有一个升序了的数组"></a>先有一个升序了的数组</h3><p>首先需要一个已经升序排序过的数组，假设现在有数组，<code>int[] score={67,69,75,88,99,103}</code>,假设我们需要查找<code>int key=67</code>吧，</p>
+<table>
+<thead>
+<tr>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>67</td>
+<td>69</td>
+<td>75</td>
+<td>88</td>
+<td>99</td>
+<td>103</td>
+</tr>
+</tbody>
+</table>
+<h3 id="测算中间位置，开始一分为二"><a href="#测算中间位置，开始一分为二" class="headerlink" title="测算中间位置，开始一分为二"></a>测算中间位置，开始一分为二</h3><p> 测算中间值，我们通过开始下标和结束下标来算中间位置，<code>int mid=(start+end)/2;</code>，由于申明的是<code>int</code>,<code>5/2</code>取得<code>double</code>值只会取整数部分，由此可知，中间值为<code>75</code>，<code>int left=0,right=score.length-1</code>，<code>left</code>和<code>right</code>，是用来控制范围，每次我们都会缩小范围查找。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th style="text-align:center">5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">67</td>
+<td>69</td>
+<td>==75==</td>
+<td>88</td>
+<td>99</td>
+<td style="text-align:center">103</td>
+</tr>
+<tr>
+<td style="text-align:center">↑L</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align:center">↑R</td>
+</tr>
+</tbody>
+</table>
+<h3 id="缩小左右区间"><a href="#缩小左右区间" class="headerlink" title="缩小左右区间"></a>缩小左右区间</h3><p>我们将需要查找的值<code>67</code> 与<code>mid</code>，对比，发现<code>67</code>比<code>mid</code>大，那么由于数组已经是升序的，我们大概推算出，<code>67</code>应该是在0到2的下标之间，将范围缩小，<code>right=mid-1</code>，将范围缩小到0-1。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th style="text-align:center">5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">67</td>
+<td>69</td>
+<td>==75==</td>
+<td>88</td>
+<td>99</td>
+<td style="text-align:center">103</td>
+</tr>
+<tr>
+<td style="text-align:center">↑L</td>
+<td>↑R</td>
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="循环折半查找"><a href="#循环折半查找" class="headerlink" title="循环折半查找"></a>循环折半查找</h3><p>现在我们要重新测试中间值，以继续进行折半查找,<code>int mid=(start+end)/2;</code>，由此可知中间值67，判断<code>if(mid==key)</code>，查找结束，找到下标为0。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th style="text-align:center">5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">==67==</td>
+<td>69</td>
+<td>75</td>
+<td>88</td>
+<td>99</td>
+<td style="text-align:center">103</td>
+</tr>
+<tr>
+<td style="text-align:center">↑L</td>
+<td>↑R</td>
+<td></td>
+<td></td>
+<td></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public static int binarySearch(int key,int[] array) &#123;</span><br><span class="line">        int start,end,mid = 0;</span><br><span class="line">        start=0;</span><br><span class="line">        end=array.length-1;</span><br><span class="line">        while (start&lt;=end) &#123;</span><br><span class="line">            mid=(start+end)/2;//测算中间位置</span><br><span class="line">            if(array[mid]==key)&#123;</span><br><span class="line">                return mid;</span><br><span class="line">            &#125;else if(array[mid]&gt;key)&#123;//测算该值在数组的左边还是右边</span><br><span class="line">                end=mid-1;</span><br><span class="line">            &#125;else&#123;</span><br><span class="line">                start=mid+1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/二分查找法/" rel="tag">#二分查找法</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/22/tomcat之如何让tomcat运行在指定JDK环境上/" rel="next" title="tomcat之如何让tomcat运行在指定JDK环境上">
+                <i class="fa fa-chevron-left"></i> tomcat之如何让tomcat运行在指定JDK环境上
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/22/设计模式：工厂方法模式、简单工厂模式与抽象工厂模式/" rel="prev" title="设计模式：工厂方法模式、简单工厂模式与抽象工厂模式">
+                设计模式：工厂方法模式、简单工厂模式与抽象工厂模式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+          <div id="lv-container" data-id="city" data-uid="MTAyMC8yODQ1Mi81MDIz">
+          </div>
+    
+  </div>
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/blog_head.jpg" alt="Mr.zeng">
+          <p class="site-author-name" itemprop="name">Mr.zeng</p>
+          <p class="site-description motion-element" itemprop="description">来这里，查看更多技术的分享</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">39</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">38</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接-如有侵权立即删除"><span class="nav-number">1.</span> <span class="nav-text">参考链接(如有侵权立即删除)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-number">2.</span> <span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">2.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现原理"><span class="nav-number">2.2.</span> <span class="nav-text">实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#先有一个升序了的数组"><span class="nav-number">2.2.1.</span> <span class="nav-text">先有一个升序了的数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测算中间位置，开始一分为二"><span class="nav-number">2.2.2.</span> <span class="nav-text">测算中间位置，开始一分为二</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缩小左右区间"><span class="nav-number">2.2.3.</span> <span class="nav-text">缩小左右区间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环折半查找"><span class="nav-number">2.2.4.</span> <span class="nav-text">循环折半查找</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源码"><span class="nav-number">2.3.</span> <span class="nav-text">源码</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=27955658&auto=0&height=66"></iframe>
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mr.zeng</span>
+</div>
+
+
+
+<div class="theme-info">
+  github地址-<a class="theme-link" href="https://github.com/iszengmh/">iszengmh</a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+  
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+  
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+   
+
+    
+      
+    
+
+   
+        <!-- UY BEGIN -->
+        <script type="text/javascript">
+           (function(d, s) {
+               var j, e = d.getElementsByTagName(s)[0];
+
+               if (typeof LivereTower === 'function') { return; }
+
+               j = d.createElement(s);
+               j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+               j.async = true;
+
+               e.parentNode.insertBefore(j, e);
+           })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+        <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("p0KDi9bm8n854nHMDy73SpnU-gzGzoHsz", "Ub1cwWstEHmBqOqGoqlcY7G8");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+
+</html>
